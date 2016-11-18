@@ -20,8 +20,8 @@ private let formatSpecifierRegex: NSRegularExpression = {
 
 class LocalizedString {
 
-    var key: String
-    var value: String
+    let key: String
+    let value: String
     var comments: [String]
 
     init(key: String, value: String, comments: [String]) {
@@ -31,15 +31,15 @@ class LocalizedString {
     }
 
     var valueWithIndexedPlaceholders: String {
-        let matches = formatSpecifierRegex.matchesInString(value, options:[], range: NSRange(location: 0, length: (value as NSString).length))
+        let matches = formatSpecifierRegex.matches(in: value, options:[], range: NSRange(location: 0, length: (value as NSString).length))
         if matches.count <= 1 {
             return value // Genstrings never adds placement indexes when 0-1 placeholders are present
         }
 
         var result = value as NSString
 
-        for i in (matches.count - 1).stride(through: 0, by: -1) {
-            result = result.stringByReplacingCharactersInRange(NSRange(location: matches[i].range.location, length: 1), withString:"%\(i + 1)$")
+        for i in stride(from: (matches.count - 1), through: 0, by: -1) {
+            result = result.replacingCharacters(in: NSRange(location: matches[i].range.location, length: 1), with: "%\(i + 1)$") as NSString
         }
 
         return result as String
@@ -51,7 +51,7 @@ class LocalizedString {
     }
 
     private var formattedComments: String {
-        return Array(Set(comments)).sort().joinWithSeparator("\n   ")
+        return Array(Set(comments)).sorted().joined(separator: "\n   ")
     }
 
 }

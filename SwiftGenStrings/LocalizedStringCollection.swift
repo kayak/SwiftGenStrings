@@ -7,17 +7,17 @@ class LocalizedStringCollection {
 
     init(strings: [LocalizedString]) {
         self.strings = strings
-        self.byKey = strings.reduce([:], combine: { result, string in
+        self.byKey = strings.reduce([:], { result, string in
             var result = result
             result[string.key] = string
             return result
         })
     }
 
-    func mergeWithCollection(collection: LocalizedStringCollection) {
+    func merge(with collection: LocalizedStringCollection) {
         for string in collection.strings {
             if let existing = byKey[string.key] {
-                existing.comments.appendContentsOf(string.comments)
+                existing.comments.append(contentsOf: string.comments)
             } else {
                 byKey[string.key] = string
                 strings.append(string)
@@ -27,8 +27,8 @@ class LocalizedStringCollection {
 
     var formattedContent: String {
         return strings
-            .sort({$0.key < $1.key })
-            .reduce("", combine: { result, string in
+            .sorted(by: {$0.key < $1.key })
+            .reduce("", { result, string in
                 return result + string.formatted + "\n\n"
             })
     }

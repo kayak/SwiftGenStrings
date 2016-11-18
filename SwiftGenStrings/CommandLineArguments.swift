@@ -3,20 +3,21 @@ import Foundation
 class CommandLineArguments {
 
     class func standardArgumentsFromProcess() -> CommandLineArguments {
-        return CommandLineArguments(arguments: Process.arguments)
+        return CommandLineArguments(arguments: CommandLine.arguments)
     }
 
     private(set) var showUsageAndExit: Bool = false
     private(set) var routine: String = "NSLocalizedString"
-    private(set) var outputDirectory: String? = nil // STDOUT
+    private(set) var outputDirectory: String? // STDOUT
     private(set) var filenames: [String] = []
+
+    private let tableName = "Localizable.strings"
 
     var outputFilename: String? {
         guard let outputDirectory = outputDirectory else {
             return nil
         }
-        // Harcoded Localizable.strings tableName
-        return "\(outputDirectory)/Localizable.strings"
+        return "\(outputDirectory)/\(tableName)"
     }
 
     init(arguments: [String]) {
@@ -27,9 +28,9 @@ class CommandLineArguments {
         var consumables = Array(arguments[1..<arguments.count])
         while let flag = CommandLineArgument.consume(&consumables) {
             switch flag {
-            case .Routine(let routine):
+            case .routine(let routine):
                 self.routine = routine
-            case .OutputDirectory(let outputDirectory):
+            case .outputDirectory(let outputDirectory):
                 self.outputDirectory = outputDirectory
             }
         }
@@ -40,10 +41,10 @@ class CommandLineArguments {
 
 private enum CommandLineArgument {
 
-    case Routine(String)
-    case OutputDirectory(String)
+    case routine(String)
+    case outputDirectory(String)
 
-    static func consume(inout arguments: [String]) -> CommandLineArgument? {
+    static func consume(_ arguments: inout [String]) -> CommandLineArgument? {
         if arguments.count < 2 {
             return nil
         }
@@ -51,9 +52,9 @@ private enum CommandLineArgument {
         let argument: CommandLineArgument?
         switch arguments[0] {
         case "-s":
-            argument = .Routine(arguments[1])
+            argument = .routine(arguments[1])
         case "-o":
-            argument = .OutputDirectory(arguments[1])
+            argument = .outputDirectory(arguments[1])
         default:
             argument = nil
         }

@@ -18,13 +18,13 @@ for filename in args.filenames {
     let tokens = SwiftTokenizer().tokenizeSwiftString(contents)
     let strings = StringFinder(routine: args.routine).findLocalizedStrings(tokens)
     let collection = LocalizedStringCollection(strings: strings)
-    finalStrings.mergeWithCollection(collection)
+    finalStrings.merge(with: collection)
 }
 
 let output = finalStrings.formattedContent
 
 if let outputFilename = args.outputFilename {
-    try! output.writeToFile(outputFilename, atomically: false, encoding: NSUTF8StringEncoding)
+    try! output.write(toFile: outputFilename, atomically: false, encoding: String.Encoding.utf8)
 } else {
     print(output, terminator: "") // No newline at the end
 }

@@ -5,7 +5,7 @@ class StringFinder {
     private let routine: String
 
     private var parsingLocalizedString = false
-    private var argument: Argument = .Key
+    private var argument: Argument = .key
     private var openedParenthesis = 0
 
     private var key = ""
@@ -18,16 +18,16 @@ class StringFinder {
         self.routine = routine
     }
 
-    func findLocalizedStrings(tokens: [SwiftLanguageToken]) -> [LocalizedString] {
+    func findLocalizedStrings(_ tokens: [SwiftLanguageToken]) -> [LocalizedString] {
         for token in tokens {
             switch token {
-            case .Identifier(let identifier):
+            case .identifier(let identifier):
                 processIdentifier(identifier)
-            case .Text(let text):
+            case .text(let text):
                 processText(text)
-            case .ParenthesisOpen:
+            case .parenthesisOpen:
                 openedParenthesis += 1
-            case .ParenthesisClose:
+            case .parenthesisClose:
                 openedParenthesis -= 1
                 processEnd()
             default:
@@ -37,31 +37,31 @@ class StringFinder {
         return result
     }
 
-    private func processIdentifier(identifier: String) {
+    private func processIdentifier(_ identifier: String) {
         switch identifier {
         case routine:
             parsingLocalizedString = true
-            argument = .Key
+            argument = .key
             openedParenthesis = 0
             key = ""
             value = ""
             comment = ""
         case "comment":
-            argument = .Comment
+            argument = .comment
         case "value":
-            argument = .Value
+            argument = .value
         default:
             break
         }
     }
 
-    private func processText(text: String) {
+    private func processText(_ text: String) {
         switch argument {
-        case .Key:
+        case .key:
             key += text
-        case .Value:
+        case .value:
             value += text
-        case .Comment:
+        case .comment:
             comment += text
         }
     }
@@ -78,9 +78,9 @@ class StringFinder {
     }
 
     private enum Argument {
-        case Key
-        case Value
-        case Comment
+        case key
+        case value
+        case comment
     }
 
 }

@@ -2,9 +2,7 @@ import Foundation
 
 class SwiftTokenizer {
 
-    init() {}
-
-    func tokenizeSwiftString(string: String) -> [SwiftLanguageToken] {
+    func tokenizeSwiftString(_ string: String) -> [SwiftLanguageToken] {
         let iterator = CharacterIterator(string: string)
         var tokens: [SwiftLanguageToken] = []
         while let character = iterator.next {
@@ -12,23 +10,23 @@ class SwiftTokenizer {
             case " ":
             break // skip whitespace
             case ":":
-                tokens.append(.Colon)
+                tokens.append(.colon)
             case "(":
-                tokens.append(.ParenthesisOpen)
+                tokens.append(.parenthesisOpen)
             case ")":
-                tokens.append(.ParenthesisClose)
+                tokens.append(.parenthesisClose)
             case "{":
-                tokens.append(.BraceOpen)
+                tokens.append(.braceOpen)
             case "}":
-                tokens.append(.BraceClose)
+                tokens.append(.braceClose)
             case "[":
-                tokens.append(.BracketOpen)
+                tokens.append(.bracketOpen)
             case "]":
-                tokens.append(.BracketClose)
+                tokens.append(.bracketClose)
             case "<":
-                tokens.append(.ChevronOpen)
+                tokens.append(.chevronOpen)
             case ">":
-                tokens.append(.ChevronClose)
+                tokens.append(.chevronClose)
             case "\"":
                 var text = ""
                 while let current = iterator.current, let next = iterator.next {
@@ -37,37 +35,37 @@ class SwiftTokenizer {
                     }
                     text = text + String(next)
                 }
-                tokens.append(.Text(text: text))
+                tokens.append(.text(text: text))
 
             case "/" where iterator.peekNext == "/":
-                iterator.next
+                _ = iterator.next
                 var comment = "//"
-                while let next = iterator.next where next != "\n" {
+                while let next = iterator.next, next != "\n" {
                     comment = comment + String(next)
                 }
-                tokens.append(.Comment(comment: comment))
+                tokens.append(.comment(comment: comment))
 
             case _ where isIdentifierCharacter(character):
                 var identifier = String(character)
-                while let peek = iterator.peekNext where isIdentifierCharacter(peek) {
+                while let peek = iterator.peekNext, isIdentifierCharacter(peek) {
                     identifier = identifier + String(peek)
-                    iterator.next
+                    _ = iterator.next
                 }
-                tokens.append(.Identifier(identifier: identifier))
+                tokens.append(.identifier(identifier: identifier))
 
             default:
-                tokens.append(.Identifier(identifier: String(character)))
+                tokens.append(.identifier(identifier: String(character)))
             }
         }
         return tokens
     }
 
-    private let alphaNumericCharacterSet = NSCharacterSet.alphanumericCharacterSet()
-    private let optionalCharacterSet = NSCharacterSet(charactersInString: "?!")
+    private let alphaNumericCharacterSet = CharacterSet.alphanumerics
+    private let optionalCharacterSet = CharacterSet(charactersIn: "?!")
 
-    private func isIdentifierCharacter(character: Character) -> Bool {
+    private func isIdentifierCharacter(_ character: Character) -> Bool {
         for unichar in String(character).utf16 {
-            if !alphaNumericCharacterSet.characterIsMember(unichar) && !optionalCharacterSet.characterIsMember(unichar) {
+            if !alphaNumericCharacterSet.contains(UnicodeScalar(unichar)!) && !optionalCharacterSet.contains(UnicodeScalar(unichar)!) {
                 return false
             }
         }

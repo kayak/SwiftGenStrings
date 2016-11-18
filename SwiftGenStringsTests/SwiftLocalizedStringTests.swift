@@ -65,7 +65,6 @@ class SwiftLocalizedStringTests: XCTestCase {
     func testTokenizerWithCommentAndAssignment() {
         let string = "// var foo = bar\nlet a = 132"
         let tokens = tokenizer.tokenizeSwiftString(string)
-        print(tokens)
         XCTAssertEqual(5, tokens.count)
     }
 
@@ -74,30 +73,30 @@ class SwiftLocalizedStringTests: XCTestCase {
     func testFindStringsWithTableNameAndBundle() {
         let finder = StringFinder(routine: "NSLocalizedString")
         let tokens: [SwiftLanguageToken] = [
-            .Identifier(identifier: "NSLocalizedString"),
-            .ParenthesisOpen,
-            .Text(text: "KEY"),
-            .Identifier(identifier: ","),
-            .Identifier(identifier: "tableName"),
-            .Colon,
-            .Identifier(identifier: "nil"),
-            .Identifier(identifier: ","),
-            .Identifier(identifier: "bundle"),
-            .Colon,
-            .Identifier(identifier: "NSBundle"),
-            .Identifier(identifier: "."),
-            .Identifier(identifier: "mainBundle"),
-            .ParenthesisOpen,
-            .ParenthesisClose,
-            .Identifier(identifier: ","),
-            .Identifier(identifier: "value"),
-            .Colon,
-            .Text(text: "VALUE"),
-            .Identifier(identifier: ","),
-            .Identifier(identifier: "comment"),
-            .Colon,
-            .Text(text: "COMMENT"),
-            .ParenthesisClose
+            .identifier(identifier: "NSLocalizedString"),
+            .parenthesisOpen,
+            .text(text: "KEY"),
+            .identifier(identifier: ","),
+            .identifier(identifier: "tableName"),
+            .colon,
+            .identifier(identifier: "nil"),
+            .identifier(identifier: ","),
+            .identifier(identifier: "bundle"),
+            .colon,
+            .identifier(identifier: "NSBundle"),
+            .identifier(identifier: "."),
+            .identifier(identifier: "mainBundle"),
+            .parenthesisOpen,
+            .parenthesisClose,
+            .identifier(identifier: ","),
+            .identifier(identifier: "value"),
+            .colon,
+            .text(text: "VALUE"),
+            .identifier(identifier: ","),
+            .identifier(identifier: "comment"),
+            .colon,
+            .text(text: "COMMENT"),
+            .parenthesisClose
         ]
 
         let localizedStrings = finder.findLocalizedStrings(tokens)
