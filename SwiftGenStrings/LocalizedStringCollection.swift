@@ -2,25 +2,27 @@ import Foundation
 
 class LocalizedStringCollection {
 
-    private var strings: [LocalizedString]
-    private var byKey: [String: LocalizedString]
+    private var byKey: [String: LocalizedString] = [:]
+    private var strings: [LocalizedString] {
+        return Array(byKey.values)
+    }
 
     init(strings: [LocalizedString]) {
-        self.strings = strings
-        self.byKey = strings.reduce([:], { result, string in
-            var result = result
-            result[string.key] = string
-            return result
-        })
+        merge(with: strings)
     }
 
     func merge(with collection: LocalizedStringCollection) {
-        for string in collection.strings {
+        merge(with: collection.strings)
+    }
+
+    private func merge(with strings: [LocalizedString]) {
+        for string in strings {
             if let existing = byKey[string.key] {
-                existing.comments.append(contentsOf: string.comments)
+                let comments = existing.comments + string.comments
+                let merged = LocalizedString(key: string.key, value: string.value, comments: comments)
+                byKey[merged.key] = merged
             } else {
                 byKey[string.key] = string
-                strings.append(string)
             }
         }
     }

@@ -22,7 +22,7 @@ class LocalizedString {
 
     let key: String
     let value: String
-    var comments: [String]
+    let comments: [String]
 
     init(key: String, value: String, comments: [String]) {
         self.key = key

@@ -2,7 +2,7 @@ import Foundation
 
 class CharacterIterator {
 
-    let characters: [Character]
+    private let characters: [Character]
 
     private var index = -1
 
