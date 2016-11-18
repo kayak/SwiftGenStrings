@@ -1,9 +1,9 @@
 import XCTest
 
-class StringFinderTests: XCTestCase {
+class LocalizedStringFinderTests: XCTestCase {
 
     func testFindStringsWithTableNameAndBundle() {
-        let finder = StringFinder(routine: "NSLocalizedString")
+        let finder = LocalizedStringFinder(routine: "NSLocalizedString")
         let tokens: [SwiftLanguageToken] = [
             .identifier(identifier: "NSLocalizedString"),
             .parenthesisOpen,

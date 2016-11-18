@@ -1,6 +1,6 @@
 import Foundation
 
-class StringFinder {
+class LocalizedStringFinder {
 
     private let routine: String
 
