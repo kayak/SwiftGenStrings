@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E01E2781DDEFDBD0093EA2E /* CharacterIteratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01E2771DDEFDBD0093EA2E /* CharacterIteratorTests.swift */; };
+		4E01E27A1DDEFDEE0093EA2E /* SwiftTokenizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01E2791DDEFDEE0093EA2E /* SwiftTokenizerTests.swift */; };
+		4E01E27C1DDEFE110093EA2E /* StringFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01E27B1DDEFE110093EA2E /* StringFinderTests.swift */; };
+		4E01E27E1DDEFE390093EA2E /* CommandLineArgumentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E01E27D1DDEFE390093EA2E /* CommandLineArgumentsTests.swift */; };
 		4E530E241D0177F2002689B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E231D0177F2002689B0 /* main.swift */; };
 		4E530E8D1D0184B9002689B0 /* CharacterIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E861D0184B9002689B0 /* CharacterIterator.swift */; };
 		4E530E8E1D0184B9002689B0 /* CommandLineArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E871D0184B9002689B0 /* CommandLineArguments.swift */; };
@@ -15,7 +19,7 @@
 		4E530E911D0184B9002689B0 /* StringFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E8A1D0184B9002689B0 /* StringFinder.swift */; };
 		4E530E921D0184B9002689B0 /* SwiftLanguageToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E8B1D0184B9002689B0 /* SwiftLanguageToken.swift */; };
 		4E530E931D0184B9002689B0 /* SwiftTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E8C1D0184B9002689B0 /* SwiftTokenizer.swift */; };
-		4E530EA31D0184FB002689B0 /* SwiftLocalizedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530EA21D0184FB002689B0 /* SwiftLocalizedStringTests.swift */; };
+		4E530EA31D0184FB002689B0 /* LocalizedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530EA21D0184FB002689B0 /* LocalizedStringTests.swift */; };
 		4E530EB41D018834002689B0 /* CharacterIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E861D0184B9002689B0 /* CharacterIterator.swift */; };
 		4E530EB51D018836002689B0 /* CommandLineArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E871D0184B9002689B0 /* CommandLineArguments.swift */; };
 		4E530EB61D018838002689B0 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E881D0184B9002689B0 /* LocalizedString.swift */; };
@@ -48,6 +52,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E01E2771DDEFDBD0093EA2E /* CharacterIteratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterIteratorTests.swift; sourceTree = "<group>"; };
+		4E01E2791DDEFDEE0093EA2E /* SwiftTokenizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTokenizerTests.swift; sourceTree = "<group>"; };
+		4E01E27B1DDEFE110093EA2E /* StringFinderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFinderTests.swift; sourceTree = "<group>"; };
+		4E01E27D1DDEFE390093EA2E /* CommandLineArgumentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandLineArgumentsTests.swift; sourceTree = "<group>"; };
 		4E530E201D0177F2002689B0 /* SwiftGenStrings */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftGenStrings; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E530E231D0177F2002689B0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4E530E861D0184B9002689B0 /* CharacterIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterIterator.swift; sourceTree = "<group>"; };
@@ -59,7 +67,7 @@
 		4E530E8C1D0184B9002689B0 /* SwiftTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTokenizer.swift; sourceTree = "<group>"; };
 		4E530E981D0184E2002689B0 /* SwiftGenStringsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGenStringsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E530E9C1D0184E2002689B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E530EA21D0184FB002689B0 /* SwiftLocalizedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLocalizedStringTests.swift; sourceTree = "<group>"; };
+		4E530EA21D0184FB002689B0 /* LocalizedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStringTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +124,12 @@
 		4E530E991D0184E2002689B0 /* SwiftGenStringsTests */ = {
 			isa = PBXGroup;
 			children = (
-				4E530EA21D0184FB002689B0 /* SwiftLocalizedStringTests.swift */,
+				4E01E2771DDEFDBD0093EA2E /* CharacterIteratorTests.swift */,
+				4E01E27D1DDEFE390093EA2E /* CommandLineArgumentsTests.swift */,
 				4E530E9C1D0184E2002689B0 /* Info.plist */,
+				4E530EA21D0184FB002689B0 /* LocalizedStringTests.swift */,
+				4E01E27B1DDEFE110093EA2E /* StringFinderTests.swift */,
+				4E01E2791DDEFDEE0093EA2E /* SwiftTokenizerTests.swift */,
 			);
 			path = SwiftGenStringsTests;
 			sourceTree = "<group>";
@@ -228,13 +240,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E530EA31D0184FB002689B0 /* SwiftLocalizedStringTests.swift in Sources */,
+				4E530EA31D0184FB002689B0 /* LocalizedStringTests.swift in Sources */,
+				4E01E27A1DDEFDEE0093EA2E /* SwiftTokenizerTests.swift in Sources */,
+				4E01E2781DDEFDBD0093EA2E /* CharacterIteratorTests.swift in Sources */,
 				4E530EB71D01883A002689B0 /* LocalizedStringCollection.swift in Sources */,
 				4E530EB51D018836002689B0 /* CommandLineArguments.swift in Sources */,
 				4E530EB91D01883E002689B0 /* SwiftLanguageToken.swift in Sources */,
 				4E530EB61D018838002689B0 /* LocalizedString.swift in Sources */,
 				4E530EB81D01883C002689B0 /* StringFinder.swift in Sources */,
+				4E01E27C1DDEFE110093EA2E /* StringFinderTests.swift in Sources */,
 				4E530EB41D018834002689B0 /* CharacterIterator.swift in Sources */,
+				4E01E27E1DDEFE390093EA2E /* CommandLineArgumentsTests.swift in Sources */,
 				4E530EBA1D018840002689B0 /* SwiftTokenizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
