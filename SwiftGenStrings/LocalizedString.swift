@@ -18,7 +18,7 @@ private let formatSpecifierRegex: NSRegularExpression = {
     return try! NSRegularExpression(pattern: pattern, options:[])
 }()
 
-class LocalizedString {
+class LocalizedString: CustomStringConvertible, Equatable {
 
     let key: String
     let value: String
@@ -52,6 +52,18 @@ class LocalizedString {
 
     private var formattedComments: String {
         return Array(Set(comments)).sorted().joined(separator: "\n   ")
+    }
+
+    // MARK: - CustomStringConvertible
+
+    var description: String {
+        return "LocalizedString(key: \(key), value: \(value), comments: \(comments))"
+    }
+
+    // MARK: - Equatable
+
+    static func ==(lhs: LocalizedString, rhs: LocalizedString) -> Bool {
+        return lhs.key == rhs.key && lhs.value == rhs.value && lhs.comments == rhs.comments
     }
 
 }

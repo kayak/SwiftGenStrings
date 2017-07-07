@@ -13,4 +13,7 @@ enum SwiftLanguageToken {
     case chevronOpen // <
     case chevronClose // >
     case colon // :
+    case dot // .
+    case plus // +
+    case comma // ,
 }

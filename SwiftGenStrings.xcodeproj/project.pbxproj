@@ -27,6 +27,8 @@
 		4E530EB81D01883C002689B0 /* LocalizedStringFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E8A1D0184B9002689B0 /* LocalizedStringFinder.swift */; };
 		4E530EB91D01883E002689B0 /* SwiftLanguageToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E8B1D0184B9002689B0 /* SwiftLanguageToken.swift */; };
 		4E530EBA1D018840002689B0 /* SwiftTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E8C1D0184B9002689B0 /* SwiftTokenizer.swift */; };
+		4E9AA7EA1F0E68F000FE9623 /* RealWorldStringsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AA7E91F0E68F000FE9623 /* RealWorldStringsTests.swift */; };
+		4E9AA7EC1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AA7EB1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		4E530E981D0184E2002689B0 /* SwiftGenStringsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGenStringsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E530E9C1D0184E2002689B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E530EA21D0184FB002689B0 /* LocalizedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStringTests.swift; sourceTree = "<group>"; };
+		4E9AA7E91F0E68F000FE9623 /* RealWorldStringsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealWorldStringsTests.swift; sourceTree = "<group>"; };
+		4E9AA7EB1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStringFinderStandardErrorOutput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 				4E530E881D0184B9002689B0 /* LocalizedString.swift */,
 				4E530E891D0184B9002689B0 /* LocalizedStringCollection.swift */,
 				4E530E8A1D0184B9002689B0 /* LocalizedStringFinder.swift */,
+				4E9AA7EB1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift */,
 				4E530E231D0177F2002689B0 /* main.swift */,
 				4E530E8B1D0184B9002689B0 /* SwiftLanguageToken.swift */,
 				4E530E8C1D0184B9002689B0 /* SwiftTokenizer.swift */,
@@ -129,6 +134,7 @@
 				4E530E9C1D0184E2002689B0 /* Info.plist */,
 				4E01E27B1DDEFE110093EA2E /* LocalizedStringFinderTests.swift */,
 				4E530EA21D0184FB002689B0 /* LocalizedStringTests.swift */,
+				4E9AA7E91F0E68F000FE9623 /* RealWorldStringsTests.swift */,
 				4E01E2791DDEFDEE0093EA2E /* SwiftTokenizerTests.swift */,
 			);
 			path = SwiftGenStringsTests;
@@ -227,6 +233,7 @@
 			files = (
 				4E530E241D0177F2002689B0 /* main.swift in Sources */,
 				4E530E901D0184B9002689B0 /* LocalizedStringCollection.swift in Sources */,
+				4E9AA7EC1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift in Sources */,
 				4E530E8E1D0184B9002689B0 /* CommandLineArguments.swift in Sources */,
 				4E530E921D0184B9002689B0 /* SwiftLanguageToken.swift in Sources */,
 				4E530E8F1D0184B9002689B0 /* LocalizedString.swift in Sources */,
@@ -244,6 +251,7 @@
 				4E01E27A1DDEFDEE0093EA2E /* SwiftTokenizerTests.swift in Sources */,
 				4E01E2781DDEFDBD0093EA2E /* CharacterIteratorTests.swift in Sources */,
 				4E530EB71D01883A002689B0 /* LocalizedStringCollection.swift in Sources */,
+				4E9AA7EA1F0E68F000FE9623 /* RealWorldStringsTests.swift in Sources */,
 				4E530EB51D018836002689B0 /* CommandLineArguments.swift in Sources */,
 				4E530EB91D01883E002689B0 /* SwiftLanguageToken.swift in Sources */,
 				4E530EB61D018838002689B0 /* LocalizedString.swift in Sources */,

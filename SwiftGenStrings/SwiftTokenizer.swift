@@ -7,10 +7,16 @@ class SwiftTokenizer {
         var tokens: [SwiftLanguageToken] = []
         while let character = iterator.next {
             switch character {
-            case " ":
-            break // skip whitespace
+            case " ", "\t", "\n":
+                break // skip whitespace
             case ":":
                 tokens.append(.colon)
+            case ".":
+                tokens.append(.dot)
+            case "+":
+                tokens.append(.plus)
+            case ",":
+                tokens.append(.comma)
             case "(":
                 tokens.append(.parenthesisOpen)
             case ")":

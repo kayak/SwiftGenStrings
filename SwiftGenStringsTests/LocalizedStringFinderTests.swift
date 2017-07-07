@@ -3,28 +3,28 @@ import XCTest
 class LocalizedStringFinderTests: XCTestCase {
 
     func testFindStringsWithTableNameAndBundle() {
-        let finder = LocalizedStringFinder(routine: "NSLocalizedString")
+        let finder = LocalizedStringFinder()
         let tokens: [SwiftLanguageToken] = [
             .identifier(identifier: "NSLocalizedString"),
             .parenthesisOpen,
             .text(text: "KEY"),
-            .identifier(identifier: ","),
+            .comma,
             .identifier(identifier: "tableName"),
             .colon,
             .identifier(identifier: "nil"),
-            .identifier(identifier: ","),
+            .comma,
             .identifier(identifier: "bundle"),
             .colon,
             .identifier(identifier: "NSBundle"),
-            .identifier(identifier: "."),
+            .dot,
             .identifier(identifier: "mainBundle"),
             .parenthesisOpen,
             .parenthesisClose,
-            .identifier(identifier: ","),
+            .comma,
             .identifier(identifier: "value"),
             .colon,
             .text(text: "VALUE"),
-            .identifier(identifier: ","),
+            .comma,
             .identifier(identifier: "comment"),
             .colon,
             .text(text: "COMMENT"),
