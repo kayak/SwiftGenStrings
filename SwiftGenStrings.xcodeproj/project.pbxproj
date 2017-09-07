@@ -29,6 +29,8 @@
 		4E530EBA1D018840002689B0 /* SwiftTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E530E8C1D0184B9002689B0 /* SwiftTokenizer.swift */; };
 		4E9AA7EA1F0E68F000FE9623 /* RealWorldStringsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AA7E91F0E68F000FE9623 /* RealWorldStringsTests.swift */; };
 		4E9AA7EC1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AA7EB1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift */; };
+		4EA221951F617609001990C2 /* testReportErrorOnSwiftUnicodeCodePoint.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4EA221941F617609001990C2 /* testReportErrorOnSwiftUnicodeCodePoint.txt */; };
+		4EA221971F61786D001990C2 /* testUnescapesDoublyEscapedUnicodeCodePoints.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4EA221961F61786D001990C2 /* testUnescapesDoublyEscapedUnicodeCodePoints.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		4E530EA21D0184FB002689B0 /* LocalizedStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStringTests.swift; sourceTree = "<group>"; };
 		4E9AA7E91F0E68F000FE9623 /* RealWorldStringsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealWorldStringsTests.swift; sourceTree = "<group>"; };
 		4E9AA7EB1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStringFinderStandardErrorOutput.swift; sourceTree = "<group>"; };
+		4EA221941F617609001990C2 /* testReportErrorOnSwiftUnicodeCodePoint.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = testReportErrorOnSwiftUnicodeCodePoint.txt; sourceTree = "<group>"; };
+		4EA221961F61786D001990C2 /* testUnescapesDoublyEscapedUnicodeCodePoints.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = testUnescapesDoublyEscapedUnicodeCodePoints.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,8 @@
 				4E530EA21D0184FB002689B0 /* LocalizedStringTests.swift */,
 				4E9AA7E91F0E68F000FE9623 /* RealWorldStringsTests.swift */,
 				4E01E2791DDEFDEE0093EA2E /* SwiftTokenizerTests.swift */,
+				4EA221961F61786D001990C2 /* testUnescapesDoublyEscapedUnicodeCodePoints.txt */,
+				4EA221941F617609001990C2 /* testReportErrorOnSwiftUnicodeCodePoint.txt */,
 			);
 			path = SwiftGenStringsTests;
 			sourceTree = "<group>";
@@ -221,6 +227,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EA221971F61786D001990C2 /* testUnescapesDoublyEscapedUnicodeCodePoints.txt in Resources */,
+				4EA221951F617609001990C2 /* testReportErrorOnSwiftUnicodeCodePoint.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

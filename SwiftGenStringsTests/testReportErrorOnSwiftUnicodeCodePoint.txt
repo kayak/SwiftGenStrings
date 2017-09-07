@@ -1,0 +1,1 @@
+NSLocalizedString("key \u{123} \U{123}", value: "", comment: "Nothing important")

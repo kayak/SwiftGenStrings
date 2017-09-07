@@ -2,7 +2,10 @@ import Foundation
 
 protocol LocalizedStringFinderErrorOutput {
     func invalidIdentifier(_ identifier: String)
+    func invalidUnicodeCodePoint(_ unicodeCharacter: String)
 }
+
+private let verifyUnicodeRegex = try! NSRegularExpression(pattern: "\\\\[uU]\\{\\d+\\}", options: [])
 
 class LocalizedStringFinder {
 
@@ -96,8 +99,33 @@ class LocalizedStringFinder {
         if value == "" {
             value = key
         }
+
+        key = unescapeUnicodePoints(in: key)
+        value = unescapeUnicodePoints(in: value)
+
+        guard validateUnicodeCodePoints(in: key) && validateUnicodeCodePoints(in: value) else {
+            parsingLocalizedString = false
+            return
+        }
+
         result.append(LocalizedString(key: key, value: value, comments: [comment]))
         parsingLocalizedString = false
+    }
+
+    /// Unicode points are defined as \\U123 in swift, but .strings file require them to be \U123.
+    private func unescapeUnicodePoints(in string: String) -> String {
+        return string.replacingOccurrences(of: "\\\\U", with: "\\U")
+    }
+
+    /// Strings files accept \U123, but don't accept \u{123} or \U{123} code points.
+    private func validateUnicodeCodePoints(in string: String) -> Bool {
+        let nsString = string as NSString
+        let matches = verifyUnicodeRegex.matches(in: string, options: [], range: NSMakeRange(0, nsString.length))
+        let invalidUnicodeCodePoints = matches.map { nsString.substring(with: $0.range) }
+
+        invalidUnicodeCodePoints.forEach { errorOutput?.invalidUnicodeCodePoint($0) }
+
+        return invalidUnicodeCodePoints.isEmpty
     }
 
     private enum Argument {

@@ -10,6 +10,10 @@ struct LocalizedStringFinderStandardErrorOutput: LocalizedStringFinderErrorOutpu
         write("Invalid identifier '\(identifier)'")
     }
 
+    func invalidUnicodeCodePoint(_ unicodeCharacter: String) {
+        write("Invalid unicode character '\(unicodeCharacter)', please use \\\\U123 format, which is accepted by .strings file")
+    }
+
     // MARK: - Helpers
 
     private func write(_ string: String) {
