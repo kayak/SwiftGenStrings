@@ -14,8 +14,7 @@ let collectionErrorOutput = LocalizedStringCollectionStandardErrorOutput()
 let finalStrings = LocalizedStringCollection(strings: [], errorOutput: collectionErrorOutput)
 
 for filename in args.filenames {
-    var contents: String! // Can't do this in one line
-    try! contents = String(contentsOfFile: filename)
+    let contents = try! String(contentsOfFile: filename)
     let tokens = SwiftTokenizer().tokenizeSwiftString(contents)
     let errorOutput = LocalizedStringFinderStandardErrorOutput(filename: filename)
     let finder = LocalizedStringFinder(routine: args.routine, errorOutput: errorOutput)
