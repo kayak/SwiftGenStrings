@@ -7,7 +7,7 @@ class CharacterIterator {
     private var index = -1
 
     init(string: String) {
-        self.characters = string.characters.map { $0 }
+        self.characters = string.map { $0 }
     }
 
     var current: Character? {

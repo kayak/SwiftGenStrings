@@ -27,14 +27,21 @@ files
 
 Project supplies a `Makefile`, to export a binary, run:
 ```
-$ make
+$ make release
 ```
 Exported binary can be found at `Products/SwiftGenStrings`
 
+## Testing
+
+Xcode 9.2 seems to have a bug with running tests against macOS destination, luckily, `xcodebuild` works just fine:
+```
+$ make test
+```
+
 ## Requirements
 
-- Xcode 8
-- Swift 3.0.1
+- Xcode 9.2
+- Swift 4.0.2
 
 ## Limitations
 
