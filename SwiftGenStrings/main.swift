@@ -10,7 +10,8 @@ if args.showUsageAndExit {
     exit(0)
 }
 
-let finalStrings = LocalizedStringCollection(strings: [])
+let collectionErrorOutput = LocalizedStringCollectionStandardErrorOutput()
+let finalStrings = LocalizedStringCollection(strings: [], errorOutput: collectionErrorOutput)
 
 for filename in args.filenames {
     var contents: String! // Can't do this in one line
@@ -19,7 +20,7 @@ for filename in args.filenames {
     let errorOutput = LocalizedStringFinderStandardErrorOutput(filename: filename)
     let finder = LocalizedStringFinder(routine: args.routine, errorOutput: errorOutput)
     let strings = finder.findLocalizedStrings(tokens)
-    let collection = LocalizedStringCollection(strings: strings)
+    let collection = LocalizedStringCollection(strings: strings, errorOutput: collectionErrorOutput)
     finalStrings.merge(with: collection)
 }
 

@@ -31,6 +31,9 @@
 		4E9AA7EC1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AA7EB1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift */; };
 		4EA221951F617609001990C2 /* testReportErrorOnSwiftUnicodeCodePoint.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4EA221941F617609001990C2 /* testReportErrorOnSwiftUnicodeCodePoint.txt */; };
 		4EA221971F61786D001990C2 /* testUnescapesDoublyEscapedUnicodeCodePoints.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4EA221961F61786D001990C2 /* testUnescapesDoublyEscapedUnicodeCodePoints.txt */; };
+		4EC3D9DA2024679C002A4337 /* StandardErrorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC3D9D82024679C002A4337 /* StandardErrorOutput.swift */; };
+		4EC3D9DB2024679C002A4337 /* LocalizedStringCollectionStandardErrorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC3D9D92024679C002A4337 /* LocalizedStringCollectionStandardErrorOutput.swift */; };
+		4EC3D9DD202467AB002A4337 /* LocalizedStringCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC3D9DC202467AB002A4337 /* LocalizedStringCollectionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,9 @@
 		4E9AA7EB1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStringFinderStandardErrorOutput.swift; sourceTree = "<group>"; };
 		4EA221941F617609001990C2 /* testReportErrorOnSwiftUnicodeCodePoint.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = testReportErrorOnSwiftUnicodeCodePoint.txt; sourceTree = "<group>"; };
 		4EA221961F61786D001990C2 /* testUnescapesDoublyEscapedUnicodeCodePoints.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = testUnescapesDoublyEscapedUnicodeCodePoints.txt; sourceTree = "<group>"; };
+		4EC3D9D82024679C002A4337 /* StandardErrorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardErrorOutput.swift; sourceTree = "<group>"; };
+		4EC3D9D92024679C002A4337 /* LocalizedStringCollectionStandardErrorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStringCollectionStandardErrorOutput.swift; sourceTree = "<group>"; };
+		4EC3D9DC202467AB002A4337 /* LocalizedStringCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStringCollectionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,12 +123,12 @@
 		4E530E221D0177F2002689B0 /* SwiftGenStrings */ = {
 			isa = PBXGroup;
 			children = (
+				4EC3D9D72024678A002A4337 /* Standard Error Output */,
 				4E530E861D0184B9002689B0 /* CharacterIterator.swift */,
 				4E530E871D0184B9002689B0 /* CommandLineArguments.swift */,
 				4E530E881D0184B9002689B0 /* LocalizedString.swift */,
 				4E530E891D0184B9002689B0 /* LocalizedStringCollection.swift */,
 				4E530E8A1D0184B9002689B0 /* LocalizedStringFinder.swift */,
-				4E9AA7EB1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift */,
 				4E530E231D0177F2002689B0 /* main.swift */,
 				4E530E8B1D0184B9002689B0 /* SwiftLanguageToken.swift */,
 				4E530E8C1D0184B9002689B0 /* SwiftTokenizer.swift */,
@@ -136,14 +142,25 @@
 				4E01E2771DDEFDBD0093EA2E /* CharacterIteratorTests.swift */,
 				4E01E27D1DDEFE390093EA2E /* CommandLineArgumentsTests.swift */,
 				4E530E9C1D0184E2002689B0 /* Info.plist */,
+				4EC3D9DC202467AB002A4337 /* LocalizedStringCollectionTests.swift */,
 				4E01E27B1DDEFE110093EA2E /* LocalizedStringFinderTests.swift */,
 				4E530EA21D0184FB002689B0 /* LocalizedStringTests.swift */,
 				4E9AA7E91F0E68F000FE9623 /* RealWorldStringsTests.swift */,
 				4E01E2791DDEFDEE0093EA2E /* SwiftTokenizerTests.swift */,
-				4EA221961F61786D001990C2 /* testUnescapesDoublyEscapedUnicodeCodePoints.txt */,
 				4EA221941F617609001990C2 /* testReportErrorOnSwiftUnicodeCodePoint.txt */,
+				4EA221961F61786D001990C2 /* testUnescapesDoublyEscapedUnicodeCodePoints.txt */,
 			);
 			path = SwiftGenStringsTests;
+			sourceTree = "<group>";
+		};
+		4EC3D9D72024678A002A4337 /* Standard Error Output */ = {
+			isa = PBXGroup;
+			children = (
+				4EC3D9D92024679C002A4337 /* LocalizedStringCollectionStandardErrorOutput.swift */,
+				4E9AA7EB1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift */,
+				4EC3D9D82024679C002A4337 /* StandardErrorOutput.swift */,
+			);
+			name = "Standard Error Output";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,11 +260,13 @@
 				4E530E901D0184B9002689B0 /* LocalizedStringCollection.swift in Sources */,
 				4E9AA7EC1F0E712900FE9623 /* LocalizedStringFinderStandardErrorOutput.swift in Sources */,
 				4E530E8E1D0184B9002689B0 /* CommandLineArguments.swift in Sources */,
+				4EC3D9DA2024679C002A4337 /* StandardErrorOutput.swift in Sources */,
 				4E530E921D0184B9002689B0 /* SwiftLanguageToken.swift in Sources */,
 				4E530E8F1D0184B9002689B0 /* LocalizedString.swift in Sources */,
 				4E530E911D0184B9002689B0 /* LocalizedStringFinder.swift in Sources */,
 				4E530E8D1D0184B9002689B0 /* CharacterIterator.swift in Sources */,
 				4E530E931D0184B9002689B0 /* SwiftTokenizer.swift in Sources */,
+				4EC3D9DB2024679C002A4337 /* LocalizedStringCollectionStandardErrorOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EC3D9DD202467AB002A4337 /* LocalizedStringCollectionTests.swift in Sources */,
 				4E530EA31D0184FB002689B0 /* LocalizedStringTests.swift in Sources */,
 				4E01E27A1DDEFDEE0093EA2E /* SwiftTokenizerTests.swift in Sources */,
 				4E01E2781DDEFDBD0093EA2E /* CharacterIteratorTests.swift in Sources */,
