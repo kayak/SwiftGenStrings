@@ -1,9 +1,35 @@
 import Foundation
 
-let usage = "Please specify file to be processed, usage:" +
-    "swift-genstrings [-o output_folder] input_filenames ..."
+let usage = """
+SwiftGenStrings files
+SwiftGenStrings [-s <routine>] [-o <outputDir>] files
+SwiftGenStrings [-h|--help]
 
-let args = CommandLineArguments.standardArgumentsFromProcess()
+OPTIONS
+-h|--help
+    (Optional) Print help.
+-s routine
+    (Optional) Substitute routine for NSLocalizedString, useful when different macro is used.
+-o outputDir
+    (Optional) Specifies what directory Localizable.strings table is created in.
+    Not specifying output directory will print script output content to standard output (console).
+files
+    List of files, that are used as source of Localizable.strings generation.
+"""
+
+let args: CommandLineArguments = {
+    do {
+        return try CommandLineArguments.standardArgumentsFromProcess()
+    } catch let error as CommandLineArgumentError {
+        print("Failed to parse command line arguments:")
+        print("  \(error.message)")
+        exit(1)
+    } catch {
+        print("Unexpected error:")
+        print("  \(error)")
+        exit(1)
+    }
+}()
 
 if args.showUsageAndExit {
     print(usage)

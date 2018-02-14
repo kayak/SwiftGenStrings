@@ -11,9 +11,13 @@ The upstream issue is tracked [here](https://openradar.appspot.com/22133811).
 ## Usage
 
 ```
+SwiftGenStrings files
 SwiftGenStrings [-s <routine>] [-o <outputDir>] files
+SwiftGenStrings [-h|--help]
 
 OPTIONS
+-h|--help
+    (Optional) Print help.
 -s routine
     (Optional) Substitute routine for NSLocalizedString, useful when different macro is used.
 -o outputDir
@@ -21,6 +25,11 @@ OPTIONS
     Not specifying output directory will print script output content to standard output (console).
 files
     List of files, that are used as source of Localizable.strings generation.
+```
+
+To gather strings in current directory, run:
+```
+$ find . -name "*.swift" | xargs SwiftGenStrings
 ```
 
 ## Exporting a Binary
