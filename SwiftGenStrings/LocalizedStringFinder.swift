@@ -100,7 +100,7 @@ class LocalizedStringFinder {
             value = key
         }
 
-        key = unescapeUnicodePoints(in: key)
+        // key needs to be doubly escaped in .strings file.
         value = unescapeUnicodePoints(in: value)
 
         guard validateUnicodeCodePoints(in: key) && validateUnicodeCodePoints(in: value) else {
@@ -112,7 +112,7 @@ class LocalizedStringFinder {
         parsingLocalizedString = false
     }
 
-    /// Unicode points are defined as \\U123 in swift, but .strings file require them to be \U123.
+    /// Unicode points are defined as \\U123 in swift, but .strings file requires them unescaped in values.
     private func unescapeUnicodePoints(in string: String) -> String {
         return string.replacingOccurrences(of: "\\\\U", with: "\\U")
     }

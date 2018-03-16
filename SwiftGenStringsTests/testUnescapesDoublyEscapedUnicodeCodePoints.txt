@@ -1,1 +1,1 @@
-NSLocalizedString("Hello \\U123", value: "World \\U123\\U456", comment: "")
+NSLocalizedString("Hello \\U123", comment: "")

@@ -20,9 +20,9 @@ class RealWorldStringsTests: XCTestCase {
         XCTAssertEqual(["dateFormatter"], errorOutput.invalidIdentifiers)
     }
 
-    func testUnescapesDoublyEscapedUnicodeCodePoints() {
+    func testUnescapesDoublyEscapedUnicodeCodePointsInValue() {
         let string = loadFileResource(named: "testUnescapesDoublyEscapedUnicodeCodePoints")
-        let expected = LocalizedString(key: "Hello \\U123", value: "World \\U123\\U456", comments: [""])
+        let expected = LocalizedString(key: "Hello \\\\U123", value: "Hello \\U123", comments: [""])
         verify(foundLocalizedString: expected, in: string)
     }
 
