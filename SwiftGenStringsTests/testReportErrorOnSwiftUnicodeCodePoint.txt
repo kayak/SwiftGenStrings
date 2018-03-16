@@ -1,1 +1,1 @@
-NSLocalizedString("key \u{123} \U{123}", value: "", comment: "Nothing important")
+NSLocalizedString("key \u{123} \u{00A0} \U{123}", value: "", comment: "Nothing important")

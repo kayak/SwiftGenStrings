@@ -29,7 +29,7 @@ class RealWorldStringsTests: XCTestCase {
     func testReportErrorOnSwiftUnicodeCodePoint() {
         let string = loadFileResource(named: "testReportErrorOnSwiftUnicodeCodePoint")
         verifyNoLocalizedString(in: string)
-        XCTAssertEqual(["\\u{123}", "\\U{123}"], errorOutput.invalidUnicodeCodePoints)
+        XCTAssertEqual(["\\u{123}", "\\u{00A0}", "\\U{123}"], errorOutput.invalidUnicodeCodePoints)
     }
 
     // MARK: - Helpers

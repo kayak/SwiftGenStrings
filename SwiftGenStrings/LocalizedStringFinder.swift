@@ -5,7 +5,7 @@ protocol LocalizedStringFinderErrorOutput {
     func invalidUnicodeCodePoint(_ unicodeCharacter: String)
 }
 
-private let verifyUnicodeRegex = try! NSRegularExpression(pattern: "\\\\[uU]\\{\\d+\\}", options: [])
+private let verifyUnicodeRegex = try! NSRegularExpression(pattern: "\\\\[uU]\\{[a-fA-F0-9]+\\}", options: [])
 
 class LocalizedStringFinder {
 
