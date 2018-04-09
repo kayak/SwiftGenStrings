@@ -25,6 +25,7 @@ class CommandLineArguments {
     }
 
     private(set) var showUsageAndExit: Bool = false
+    private(set) var showVersionAndExit: Bool = false
     private(set) var routine: String = "NSLocalizedString"
     private(set) var outputDirectory: String? // STDOUT
     private(set) var filenames: [String] = []
@@ -48,6 +49,8 @@ class CommandLineArguments {
             switch flag {
             case .help:
                 self.showUsageAndExit = true
+            case .version:
+                self.showVersionAndExit = true
             case .routine(let routine):
                 self.routine = routine
             case .outputDirectory(let outputDirectory):
@@ -63,6 +66,7 @@ class CommandLineArguments {
 private enum CommandLineArgument {
 
     case help
+    case version
     case routine(String)
     case outputDirectory(String)
     case filenames([String])
@@ -76,6 +80,9 @@ private enum CommandLineArgument {
         switch arguments[0] {
         case  "-h", "--help":
             argument = .help
+            arguments = []
+        case  "-v", "--version":
+            argument = .version
             arguments = []
         case "-s":
             guard arguments.count >= 2 else {

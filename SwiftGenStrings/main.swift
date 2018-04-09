@@ -1,5 +1,6 @@
 import Foundation
 
+let version = "0.0.1"
 let usage = """
 SwiftGenStrings files
 SwiftGenStrings [-s <routine>] [-o <outputDir>] files
@@ -8,6 +9,8 @@ SwiftGenStrings [-h|--help]
 OPTIONS
 -h|--help
     (Optional) Print help.
+-v|--version
+(Optional) Print version.
 -s routine
     (Optional) Substitute routine for NSLocalizedString, useful when different macro is used.
 -o outputDir
@@ -33,6 +36,11 @@ let args: CommandLineArguments = {
 
 if args.showUsageAndExit {
     print(usage)
+    exit(0)
+}
+
+if args.showVersionAndExit {
+    print(version)
     exit(0)
 }
 
