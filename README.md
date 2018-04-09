@@ -32,13 +32,25 @@ To gather strings in current directory, run:
 $ find . -name "*.swift" | xargs SwiftGenStrings
 ```
 
-## Exporting a Binary
+## Installation
 
-Project supplies a `Makefile`, to export a binary, run:
+### Prebuilt Binaries
+
+We tag releases and upload prebuilt binaries to GitHub. Checkout the [releases](https://github.com/kayak/SwiftGenStrings/releases) tab or go straight to the [latest](https://github.com/kayak/SwiftGenStrings/releases/latest) release.
+
+### From Git
+
+The project provides a `Makefile`. To export a binary run:
+
 ```
 $ make release
 ```
-Exported binary can be found at `Products/SwiftGenStrings`
+
+The exported binary can be found under `Products/SwiftGenStrings`
+
+### CocoaPods
+
+A podspec file for the project was released (see [here](https://cocoapods.org/pods/SwiftGenStrings)). However, consumption of SwiftGenStrings through CocoaPods remains experimental at this point.
 
 ## Testing
 
