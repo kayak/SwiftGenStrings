@@ -67,4 +67,4 @@ fastlane/test_output
 # Custom:
 *.xcarchive/
 Products/
-
+.DS_Store
