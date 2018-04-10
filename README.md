@@ -50,7 +50,13 @@ The exported binary can be found under `Products/SwiftGenStrings`
 
 ### CocoaPods
 
-A podspec file for the project was released (see [here](https://cocoapods.org/pods/SwiftGenStrings)). However, consumption of SwiftGenStrings through CocoaPods remains experimental at this point.
+A podspec file for the project was released (see [here](https://cocoapods.org/pods/SwiftGenStrings)). To consume the project, simply add the following to your `Podfile`:
+
+```
+pod 'SwiftGenStrings'
+```
+
+After running `pod install` or `pod update`, you will then find the binary under `Pods/SwiftGenStrings/SwiftGenStrings`
 
 ## Testing
 
