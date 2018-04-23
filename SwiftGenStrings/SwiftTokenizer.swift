@@ -33,6 +33,30 @@ class SwiftTokenizer {
                 tokens.append(.chevronOpen)
             case ">":
                 tokens.append(.chevronClose)
+            case "\"" where iterator.charactersMatch("\"\"\""):
+                // Skip over opening quotes
+                iterator.advance(3)
+                iterator.skipWhitespace()
+                var text = ""
+                while let current = iterator.current {
+                    // Check for code formatting linebreak
+                    if current == "\\" && iterator.charactersMatch("\\\n") {
+                        iterator.advance(1)
+                        iterator.skipWhitespace()
+                    // Check for closing quotes
+                    } else if current == "\"" && iterator.charactersMatch("\"\"\"") {
+                        iterator.advance(2)
+                        // Remove last newline and trailing whitespace before closing quotes
+                        if let lastIndex = text.range(of: "\n", options: .backwards)?.lowerBound {
+                            text.removeSubrange(lastIndex..<text.endIndex)
+                        }
+                        break
+                    } else {
+                        text += String(current)
+                        _ = iterator.next
+                    }
+                }
+                tokens.append(.text(text: text))
             case "\"":
                 var text = ""
                 while let current = iterator.current, let next = iterator.next {
@@ -79,3 +103,17 @@ class SwiftTokenizer {
     }
 
 }
+
+private extension CharacterIterator {
+    
+    func skipWhitespace() {
+        while let current = current {
+            guard current == " " || current == "\t" || current == "\n" else {
+                return
+            }
+            _ = next
+        }
+    }
+    
+}
+

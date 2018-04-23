@@ -47,4 +47,21 @@ class CharacterIterator {
         return characters[index - 1]
     }
 
+    func advance(_ count: Int) {
+        if index + count < characters.count {
+            index += count
+        } else {
+            index = characters.count - 1
+        }
+    }
+    
+    func charactersMatch(_ string: String) -> Bool {
+        let match = string.map { $0 }
+        guard index + match.count - 1 < characters.count else {
+            return false
+        }
+        let sub = Array(characters[index..<index + match.count])
+        return sub == match
+    }
+    
 }

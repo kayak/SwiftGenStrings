@@ -46,4 +46,11 @@ class SwiftTokenizerTests: XCTestCase {
         XCTAssertEqual(5, tokens.count)
     }
 
+    func testTokenizerMultiLineStringLiteral() {
+        let string = "NSLocalizedString(\n\t\"\"\"\n\tHere is some multi-line text \\\n\tMore text here\n\t\"\"\",\n\tcomment: \"bla bla\")"
+        let tokens = tokenizer.tokenizeSwiftString(string)
+        XCTAssertEqual(8, tokens.count)
+        XCTAssertEqual(tokens[2], SwiftLanguageToken.text(text: "Here is some multi-line text More text here"))
+    }
+    
 }
