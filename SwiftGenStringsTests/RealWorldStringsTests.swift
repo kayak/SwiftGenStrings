@@ -32,6 +32,15 @@ class RealWorldStringsTests: XCTestCase {
         XCTAssertEqual(["\\u{123}", "\\u{00A0}", "\\U{123}"], errorOutput.invalidUnicodeCodePoints)
     }
 
+    func testMultilineStringLiteralConvertedToSingleLineStringLiteral() {
+        verify(
+            foundLocalizedString: LocalizedString(
+                key: "Here is some multi-line text More text here",
+                value: "Here is some multi-line text More text here",
+                comments: ["c"]),
+            in: "NSLocalizedString(\"\"\"\n\tHere is some multi-line text \\\n\tMore text here\n\t\"\"\", comment: \"c\")")
+    }
+    
     // MARK: - Helpers
 
     private func verify(foundLocalizedString expected: LocalizedString, in contents: String) {

@@ -47,4 +47,37 @@ class CharacterIterator {
         return characters[index - 1]
     }
 
+    func advance(_ count: Int) {
+        if index + count < characters.count && index + count >= 0 {
+            index += count
+        } else if index + count >= characters.count {
+            index = characters.count - 1
+        } else {
+            index = 0
+        }
+    }
+    
+    func skipWhitespacesAndNewlines() {
+        let whitespacesAndNewlinesSet = CharacterSet.whitespacesAndNewlines
+        while let current = current {
+            guard
+                current.unicodeScalars.count == 1,
+                let unicodeScalar = current.unicodeScalars.first,
+                whitespacesAndNewlinesSet.contains(unicodeScalar)
+            else {
+                return
+            }
+            _ = next
+        }
+    }
+    
+    func startsWith(_ string: String) -> Bool {
+        let match = string.map { $0 }
+        guard index >= 0 && index + match.count - 1 < characters.count else {
+            return false
+        }
+        let sub = Array(characters[index..<index + match.count])
+        return sub == match
+    }
+    
 }
