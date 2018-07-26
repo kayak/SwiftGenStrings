@@ -32,6 +32,11 @@ To gather strings in current directory, run:
 $ find . -name "*.swift" | xargs SwiftGenStrings
 ```
 
+If you have any 3rd party code like CocoaPods or Carthage in your project directory, you might want to exclude it from localization. To do that, run the following:
+```
+$ find . \( -name "*.swift" ! -path "./Carthage/*" ! -path "./Pods/*" \) | xargs SwiftGenStrings
+```
+
 ## Installation
 
 ### Prebuilt Binaries
