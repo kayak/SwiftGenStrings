@@ -1,6 +1,6 @@
 import Foundation
 
-struct LocalizedStringCollectionStandardErrorOutput: StandardErrorOutput {}
+final class LocalizedStringCollectionStandardErrorOutput: StandardErrorOutput {}
 
 extension LocalizedStringCollectionStandardErrorOutput: LocalizedStringCollectionErrorOutput {
 

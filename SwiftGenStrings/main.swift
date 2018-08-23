@@ -47,6 +47,8 @@ if args.showVersionAndExit {
 let collectionErrorOutput = LocalizedStringCollectionStandardErrorOutput()
 let finalStrings = LocalizedStringCollection(strings: [], errorOutput: collectionErrorOutput)
 
+var errorEncountered = false
+   
 for filename in args.filenames {
     let contents = try! String(contentsOfFile: filename)
     let tokens = SwiftTokenizer().tokenizeSwiftString(contents)
@@ -55,6 +57,11 @@ for filename in args.filenames {
     let strings = finder.findLocalizedStrings(tokens)
     let collection = LocalizedStringCollection(strings: strings, errorOutput: collectionErrorOutput)
     finalStrings.merge(with: collection)
+    errorEncountered = errorEncountered || errorOutput.hasWrittenError || collectionErrorOutput.hasWrittenError
+}
+
+if errorEncountered {
+    exit(1)
 }
 
 let output = finalStrings.formattedContent
