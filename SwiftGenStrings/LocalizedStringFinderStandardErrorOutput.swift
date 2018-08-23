@@ -1,8 +1,13 @@
 import Foundation
 
-struct LocalizedStringFinderStandardErrorOutput: StandardErrorOutput {
+final class LocalizedStringFinderStandardErrorOutput: StandardErrorOutput {
 
     let filename: String
+    
+    init(filename: String) {
+        self.filename = filename
+        super.init()
+    }
 
 }
 
