@@ -47,12 +47,17 @@ class SwiftTokenizer {
                     } else if current == "\"" && iterator.startsWith("\"\"\"") {
                         iterator.advance(2)
                         // Remove last newline and trailing whitespace before closing quotes
-                        if let lastIndex = text.range(of: "\n", options: .backwards)?.lowerBound {
+                        if let lastIndex = text.range(of: "\\n", options: .backwards)?.lowerBound {
                             text.removeSubrange(lastIndex..<text.endIndex)
                         }
                         break
                     } else {
-                        text += String(current)
+                        var current = String(current)
+                        // Escape any newlines included
+                        if current == "\n" {
+                            current = "\\n"
+                        }
+                        text += current
                         _ = iterator.next
                     }
                 }
