@@ -78,7 +78,7 @@ class SwiftTokenizer {
                 while let next = iterator.next, next != "\n" {
                     comment = comment + String(next)
                 }
-                tokens.append(.comment(comment: comment))
+                tokens.append(.comment(comment))
 
             case _ where isIdentifierCharacter(character):
                 var identifier = String(character)
@@ -86,21 +86,28 @@ class SwiftTokenizer {
                     identifier = identifier + String(peek)
                     _ = iterator.next
                 }
-                tokens.append(.identifier(identifier: identifier))
+                tokens.append(.identifier(identifier))
 
             default:
-                tokens.append(.identifier(identifier: String(character)))
+                tokens.append(.identifier(String(character)))
             }
         }
         return tokens
     }
 
-    private let alphaNumericCharacterSet = CharacterSet.alphanumerics
-    private let optionalCharacterSet = CharacterSet(charactersIn: "?!")
+    private let allowedIdentifierCharacterSet: CharacterSet = {
+        let optionalCharacterSet = CharacterSet(charactersIn: "?!")
+        let underscores = CharacterSet(charactersIn: "_")
+
+        return CharacterSet.alphanumerics
+            .union(.symbols)
+            .union(optionalCharacterSet)
+            .union(underscores)
+    }()
 
     private func isIdentifierCharacter(_ character: Character) -> Bool {
-        for unichar in String(character).utf16 {
-            if !alphaNumericCharacterSet.contains(UnicodeScalar(unichar)!) && !optionalCharacterSet.contains(UnicodeScalar(unichar)!) {
+        for unicodeScalar in character.unicodeScalars {
+            if !allowedIdentifierCharacterSet.contains(unicodeScalar) {
                 return false
             }
         }

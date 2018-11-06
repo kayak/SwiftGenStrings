@@ -1,9 +1,9 @@
 import Foundation
 
 enum SwiftLanguageToken: Equatable {
-    case identifier(identifier: String) // import, var, ClassName, functionName
+    case identifier(_ identifier: String) // import, var, ClassName, functionName
     case text(text: String) // "...."
-    case comment(comment: String) // /* or //
+    case comment(_ comment: String) // /* or //
     case braceOpen // {
     case braceClose // }
     case bracketOpen // [

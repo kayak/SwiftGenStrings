@@ -40,6 +40,13 @@ class RealWorldStringsTests: XCTestCase {
                 comments: ["c"]),
             in: "NSLocalizedString(\"\"\"\n\tHere is some multi-line text \\\n\tMore text here\n\t\"\"\", comment: \"c\")")
     }
+
+    func testEmojiInIdentifierWithoutLocalizedString() {
+        let string = "var fontWeight📙: String"
+        verifyNoLocalizedString(in: string)
+        XCTAssertEqual(0, errorOutput.invalidIdentifiers.count)
+        XCTAssertEqual(0, errorOutput.invalidUnicodeCodePoints.count)
+    }
     
     // MARK: - Helpers
 

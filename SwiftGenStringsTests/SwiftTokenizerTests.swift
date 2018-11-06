@@ -34,6 +34,18 @@ class SwiftTokenizerTests: XCTestCase {
         XCTAssertEqual(6, tokens.count)
     }
 
+    func testTokenizerWithUnderscore() {
+        let string = "var _secret = \"123\""
+        let tokens = tokenizer.tokenizeSwiftString(string)
+        assertEqualTokens([.identifier("var"), .identifier("_secret"), .identifier("="), .text(text: "123")], tokens)
+    }
+
+    func testTokenizerWithEmojiInIdentifier() {
+        let string = "var fontWeight📙: String"
+        let tokens = tokenizer.tokenizeSwiftString(string)
+        assertEqualTokens([.identifier("var"), .identifier("fontWeight📙"), .colon, .identifier("String")], tokens)
+    }
+
     func testTokenizerWithComment() {
         let string = "// var foo = bar"
         let tokens = tokenizer.tokenizeSwiftString(string)
@@ -58,6 +70,16 @@ class SwiftTokenizerTests: XCTestCase {
         let tokens = tokenizer.tokenizeSwiftString(string)
         XCTAssertEqual(8, tokens.count)
         XCTAssertEqual(tokens[2], SwiftLanguageToken.text(text: "Here is some multi-line text\\nwith newline"))
+    }
+
+    // MARK: - Helpers
+
+    private func assertEqualTokens(_ expected: [SwiftLanguageToken], _ actual: [SwiftLanguageToken], file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(expected.count, actual.count, file: file, line: line)
+
+        for value in zip(expected, actual).enumerated() {
+            XCTAssertEqual(value.element.0, value.element.1, "Expected same tokens at index \(value.offset)", file: file, line: line)
+        }
     }
     
 }
