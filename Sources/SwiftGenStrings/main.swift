@@ -17,8 +17,13 @@ extension URL: ExpressibleByArgument {
 
 struct SwiftGenStrings: ParsableCommand {
 
+	private static var abstract = """
+	SwiftGenStrings is a command line application that can be used as a drop-in replacement for the standard genstrings command for Swift sources.
+	The latter only supports the short form of the NSLocalizedString function but breaks as soon as you use any parameters other than key and comment as in
+	"""
+
 	static var configuration: CommandConfiguration {
-		CommandConfiguration(commandName: "SwiftGenStrings", abstract: "TODO", version: "0.0.2", helpNames: .shortAndLong)
+		CommandConfiguration(commandName: "SwiftGenStrings", abstract: SwiftGenStrings.abstract, version: "0.0.2", helpNames: .shortAndLong)
 	}
 
 	@Option(name: .shortAndLong, help: "Substitute for NSLocalizedString, useful when different macro is used.")
@@ -47,13 +52,13 @@ struct SwiftGenStrings: ParsableCommand {
 		}
 
 		if errorEncountered {
-			Darwin.exit(1)
+			throw NSError(description: "Error encountered")
 		}
 
 		let output = finalStrings.formattedContent
 
 		if let outputDirectory = outputDirectory {
-			try output.write(to: outputDirectory, atomically: false, encoding: .utf8)
+			try output.ky_write(to: outputDirectory, atomically: false, encoding: .utf8, createDirectoryIfNonExisting: true)
 		} else {
 			print(output, terminator: "") // No newline at the end
 		}

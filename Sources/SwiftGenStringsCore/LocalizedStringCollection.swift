@@ -11,7 +11,7 @@ public class LocalizedStringCollection {
     private var byKey: [String: LocalizedString] = [:]
 
     private var strings: [LocalizedString] {
-        return Array(byKey.values)
+        Array(byKey.values)
     }
 
     public init(strings: [LocalizedString], errorOutput: LocalizedStringCollectionErrorOutput?) {
@@ -40,11 +40,11 @@ public class LocalizedStringCollection {
     }
 
     public var formattedContent: String {
-        return strings
+        strings
             .sorted(by: {$0.key < $1.key })
-            .reduce("", { result, string in
-                return result + string.formatted + "\n\n"
-            })
+            .reduce("") { result, string in
+                result + string.formatted + "\n\n"
+            }
     }
 
 }

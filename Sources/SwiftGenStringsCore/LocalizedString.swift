@@ -46,24 +46,24 @@ public class LocalizedString: CustomStringConvertible, Equatable {
     }
 
     var formatted: String {
-        return "/* \(formattedComments) */\n" +
+        "/* \(formattedComments) */\n" +
             "\"\(key)\" = \"\(valueWithIndexedPlaceholders)\";"
     }
 
     private var formattedComments: String {
-        return Array(Set(comments)).sorted().joined(separator: "\n   ")
+        Array(Set(comments)).sorted().joined(separator: "\n   ")
     }
 
     // MARK: - CustomStringConvertible
 
     public var description: String {
-        return "LocalizedString(key: \(key), value: \(value), comments: \(comments))"
+        "LocalizedString(key: \(key), value: \(value), comments: \(comments))"
     }
 
     // MARK: - Equatable
 
     public static func ==(lhs: LocalizedString, rhs: LocalizedString) -> Bool {
-        return lhs.key == rhs.key && lhs.value == rhs.value && lhs.comments == rhs.comments
+        lhs.key == rhs.key && lhs.value == rhs.value && lhs.comments == rhs.comments
     }
 
 }
