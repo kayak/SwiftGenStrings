@@ -18,7 +18,7 @@ private let formatSpecifierRegex: NSRegularExpression = {
     return try! NSRegularExpression(pattern: pattern, options:[])
 }()
 
-class LocalizedString: CustomStringConvertible, Equatable {
+public class LocalizedString: CustomStringConvertible, Equatable {
 
     let key: String
     let value: String
@@ -56,13 +56,13 @@ class LocalizedString: CustomStringConvertible, Equatable {
 
     // MARK: - CustomStringConvertible
 
-    var description: String {
+    public var description: String {
         return "LocalizedString(key: \(key), value: \(value), comments: \(comments))"
     }
 
     // MARK: - Equatable
 
-    static func ==(lhs: LocalizedString, rhs: LocalizedString) -> Bool {
+    public static func ==(lhs: LocalizedString, rhs: LocalizedString) -> Bool {
         return lhs.key == rhs.key && lhs.value == rhs.value && lhs.comments == rhs.comments
     }
 

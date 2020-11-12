@@ -1,8 +1,8 @@
 import Foundation
 
-class SwiftTokenizer {
+public struct SwiftTokenizer {
 
-    func tokenizeSwiftString(_ string: String) -> [SwiftLanguageToken] {
+    public static func tokenizeSwiftString(_ string: String) -> [SwiftLanguageToken] {
         let iterator = CharacterIterator(string: string)
         var tokens: [SwiftLanguageToken] = []
         while let character = iterator.next {
@@ -95,7 +95,7 @@ class SwiftTokenizer {
         return tokens
     }
 
-    private let allowedIdentifierCharacterSet: CharacterSet = {
+    private static let allowedIdentifierCharacterSet: CharacterSet = {
         let optionalCharacterSet = CharacterSet(charactersIn: "?!")
         let underscores = CharacterSet(charactersIn: "_")
 
@@ -105,7 +105,7 @@ class SwiftTokenizer {
             .union(underscores)
     }()
 
-    private func isIdentifierCharacter(_ character: Character) -> Bool {
+    private static func isIdentifierCharacter(_ character: Character) -> Bool {
         for unicodeScalar in character.unicodeScalars {
             if !allowedIdentifierCharacterSet.contains(unicodeScalar) {
                 return false

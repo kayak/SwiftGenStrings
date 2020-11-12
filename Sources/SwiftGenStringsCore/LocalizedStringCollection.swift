@@ -1,10 +1,10 @@
 import Foundation
 
-protocol LocalizedStringCollectionErrorOutput {
+public protocol LocalizedStringCollectionErrorOutput {
     func differentValues(forKey key: String, value1: String, value2: String)
 }
 
-class LocalizedStringCollection {
+public class LocalizedStringCollection {
 
     private let errorOutput: LocalizedStringCollectionErrorOutput?
 
@@ -14,12 +14,12 @@ class LocalizedStringCollection {
         return Array(byKey.values)
     }
 
-    init(strings: [LocalizedString], errorOutput: LocalizedStringCollectionErrorOutput?) {
+    public init(strings: [LocalizedString], errorOutput: LocalizedStringCollectionErrorOutput?) {
         self.errorOutput = errorOutput
         merge(with: strings)
     }
 
-    func merge(with collection: LocalizedStringCollection) {
+    public func merge(with collection: LocalizedStringCollection) {
         merge(with: collection.strings)
     }
 
@@ -39,7 +39,7 @@ class LocalizedStringCollection {
         }
     }
 
-    var formattedContent: String {
+    public var formattedContent: String {
         return strings
             .sorted(by: {$0.key < $1.key })
             .reduce("", { result, string in

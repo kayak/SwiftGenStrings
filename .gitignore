@@ -68,3 +68,4 @@ fastlane/test_output
 *.xcarchive/
 Products/
 .DS_Store
+.swiftpm

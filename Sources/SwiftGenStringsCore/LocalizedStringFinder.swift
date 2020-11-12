@@ -1,13 +1,13 @@
 import Foundation
 
-protocol LocalizedStringFinderErrorOutput {
+public protocol LocalizedStringFinderErrorOutput {
     func invalidIdentifier(_ identifier: String)
     func invalidUnicodeCodePoint(_ unicodeCharacter: String)
 }
 
 private let verifyUnicodeRegex = try! NSRegularExpression(pattern: "\\\\[uU]\\{[a-fA-F0-9]+\\}", options: [])
 
-class LocalizedStringFinder {
+public class LocalizedStringFinder {
 
     private let routine: String
     private let errorOutput: LocalizedStringFinderErrorOutput?
@@ -23,12 +23,12 @@ class LocalizedStringFinder {
 
     private var result: [LocalizedString] = []
 
-    init(routine: String = "NSLocalizedString", errorOutput: LocalizedStringFinderErrorOutput? = nil) {
+    public init(routine: String = "NSLocalizedString", errorOutput: LocalizedStringFinderErrorOutput? = nil) {
         self.routine = routine
         self.errorOutput = errorOutput
     }
 
-    func findLocalizedStrings(_ tokens: [SwiftLanguageToken]) -> [LocalizedString] {
+    public func findLocalizedStrings(_ tokens: [SwiftLanguageToken]) -> [LocalizedString] {
         for token in tokens {
             switch token {
             case .identifier(let identifier):

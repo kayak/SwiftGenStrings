@@ -1,10 +1,12 @@
 import Foundation
 
-class StandardErrorOutput {
+public class StandardErrorOutput {
 
-    private(set) var hasWrittenError = false
+    public private(set) var hasWrittenError = false
+
+	public init() {}
     
-    func write(_ string: String) {
+    public func write(_ string: String) {
         let line = "\(string)\n"
         guard let data = line.data(using: .utf8) else {
             assertionFailure("Failed to convert \(line) to Data")

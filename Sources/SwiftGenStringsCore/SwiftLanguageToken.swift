@@ -1,6 +1,6 @@
 import Foundation
 
-enum SwiftLanguageToken: Equatable {
+public enum SwiftLanguageToken: Equatable {
     case identifier(_ identifier: String) // import, var, ClassName, functionName
     case text(text: String) // "...."
     case comment(_ comment: String) // /* or //

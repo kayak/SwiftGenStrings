@@ -1,12 +1,12 @@
 import Foundation
 
-class CharacterIterator {
+public class CharacterIterator {
 
     private let characters: [Character]
 
     private var index = -1
 
-    init(string: String) {
+    public init(string: String) {
         self.characters = string.map { $0 }
     }
 

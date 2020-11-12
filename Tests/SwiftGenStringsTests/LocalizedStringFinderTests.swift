@@ -1,3 +1,4 @@
+@testable import SwiftGenStringsCore
 import XCTest
 
 class LocalizedStringFinderTests: XCTestCase {

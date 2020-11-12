@@ -1,3 +1,4 @@
+@testable import SwiftGenStringsCore
 import XCTest
 
 class RealWorldStringsTests: XCTestCase {
@@ -20,14 +21,14 @@ class RealWorldStringsTests: XCTestCase {
         XCTAssertEqual(["dateFormatter"], errorOutput.invalidIdentifiers)
     }
 
-    func testUnescapesDoublyEscapedUnicodeCodePointsInValue() {
-        let string = loadFileResource(named: "testUnescapesDoublyEscapedUnicodeCodePoints")
+    func testUnescapesDoublyEscapedUnicodeCodePointsInValue() throws {
+        let string = try loadFileResource(named: "testUnescapesDoublyEscapedUnicodeCodePoints")
         let expected = LocalizedString(key: "Hello \\\\U123", value: "Hello \\U123", comments: [""])
         verify(foundLocalizedString: expected, in: string)
     }
 
-    func testReportErrorOnSwiftUnicodeCodePoint() {
-        let string = loadFileResource(named: "testReportErrorOnSwiftUnicodeCodePoint")
+    func testReportErrorOnSwiftUnicodeCodePoint() throws {
+        let string = try loadFileResource(named: "testReportErrorOnSwiftUnicodeCodePoint")
         verifyNoLocalizedString(in: string)
         XCTAssertEqual(["\\u{123}", "\\u{00A0}", "\\U{123}"], errorOutput.invalidUnicodeCodePoints)
     }
@@ -62,14 +63,15 @@ class RealWorldStringsTests: XCTestCase {
     }
 
     private func findLocalizedStrings(in contents: String) -> [LocalizedString] {
-        let tokens = SwiftTokenizer().tokenizeSwiftString(contents)
+        let tokens = SwiftTokenizer.tokenizeSwiftString(contents)
         return LocalizedStringFinder(errorOutput: errorOutput).findLocalizedStrings(tokens)
     }
 
-    private func loadFileResource(named name: String) -> String {
-        let bundle = Bundle(for: type(of: self))
-        let url = bundle.url(forResource: name, withExtension: "txt")!
-        return try! String(contentsOf: url, encoding: .utf8)
+    private func loadFileResource(named name: String) throws -> String {
+		guard let url = Bundle.module.url(forResource: name, withExtension: "txt") else {
+			throw NSError()
+		}
+        return try String(contentsOf: url, encoding: .utf8)
     }
 
 }

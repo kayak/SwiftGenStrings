@@ -1,7 +1,7 @@
 test:
-	xcodebuild test -project "SwiftGenStrings.xcodeproj" -scheme "SwiftGenStrings" -destination "platform=macOS"
+	swift test
 
 release:
-	xcodebuild -scheme "SwiftGenStrings" -configuration "Release" -destination "generic/platform=macOS" clean archive -archivePath "build/"
+	swift build -c release
 	mkdir -p Products
-	cp build.xcarchive/Products/usr/local/bin/SwiftGenStrings Products/
+	cp .build/release/SwiftGenStrings Products/SwiftGenStrings
