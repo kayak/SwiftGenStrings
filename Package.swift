@@ -23,7 +23,10 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "SwiftGenStrings",
-			dependencies: ["SwiftGenStringsCore", .product(name: "ArgumentParser", package: "swift-argument-parser")]
+			dependencies: [
+                "SwiftGenStringsCore",
+                .product(name: "ArgumentParser", package: "swift-argument-parser")
+            ]
 		),
 		.target(
 			name: "SwiftGenStringsCore",

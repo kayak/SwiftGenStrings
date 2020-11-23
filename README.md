@@ -39,6 +39,13 @@ $ find . \( -name "*.swift" ! -path "./Carthage/*" ! -path "./Pods/*" \) | xargs
 
 ## Installation
 
+### [Mint](https://github.com/yonaskolb/mint)
+
+The quickest and easiest way to install SwiftGenStrings is via Mint
+```
+$ mint install kayak/SwiftGenStrings
+```
+
 ### Prebuilt Binaries
 
 We tag releases and upload prebuilt binaries to GitHub. Checkout the [releases](https://github.com/kayak/SwiftGenStrings/releases) tab or go straight to the [latest](https://github.com/kayak/SwiftGenStrings/releases/latest) release.
@@ -51,7 +58,7 @@ The project provides a `Makefile`. To export a binary run:
 $ make release
 ```
 
-The exported binary can be found under `Products/SwiftGenStrings`
+The exported binary can be found under `Products/SwiftGenStrings`. Alternatively you can use `make install` to install the compiled library directly into `/usr/local/bin/SwiftGenStrings`
 
 ### CocoaPods
 
@@ -65,15 +72,15 @@ After running `pod install` or `pod update`, you will then find the binary under
 
 ## Testing
 
-Xcode 9.2 seems to have a bug with running tests against macOS destination, luckily, `xcodebuild` works just fine:
+Since SwiftGenStrings is a SPM package, running tests is easy:
 ```
-$ make test
+$ swift test
 ```
 
 ## Requirements
 
-- Xcode 9.2
-- Swift 4.0.2
+- Xcode 12
+- Swift 5.3
 
 ## Limitations
 
