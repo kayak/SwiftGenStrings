@@ -11,20 +11,17 @@ The upstream issue is tracked [here](https://openradar.appspot.com/22133811).
 ## Usage
 
 ```
-SwiftGenStrings files
-SwiftGenStrings [-s <routine>] [-o <outputDir>] files
-SwiftGenStrings [-h|--help]
+SwiftGenStrings [<files> ...] [-s <substitute>] [-o <output-directory>]
 
-OPTIONS
--h|--help
-    (Optional) Print help.
--s routine
-    (Optional) Substitute routine for NSLocalizedString, useful when different macro is used.
--o outputDir
-    (Optional) Specifies what directory Localizable.strings table is created in.
-    Not specifying output directory will print script output content to standard output (console).
-files
-    List of files, that are used as source of Localizable.strings generation.
+ARGUMENTS:
+  <files>                 List of files, that are used as source of Localizable.strings generation.
+
+OPTIONS:
+  -s <substitute>         (Optional) Substitute for NSLocalizedString, useful when different macro is used.
+  -o <output-directory>   (Optional) Specifies what directory Localizable.strings table is created in. Not specifying output directory will print script output content
+                          to standard output (console).
+  --version               Show the version.
+  -h, --help              Show help information.
 ```
 
 To gather strings in current directory, run:
@@ -59,16 +56,6 @@ $ make release
 ```
 
 The exported binary can be found under `Products/SwiftGenStrings`. Alternatively you can use `make install` to install the compiled library directly into `/usr/local/bin/SwiftGenStrings`
-
-### CocoaPods
-
-A podspec file for the project was released (see [here](https://cocoapods.org/pods/SwiftGenStrings)). To consume the project, simply add the following to your `Podfile`:
-
-```
-pod 'SwiftGenStrings'
-```
-
-After running `pod install` or `pod update`, you will then find the binary under `Pods/SwiftGenStrings/SwiftGenStrings`
 
 ## Testing
 

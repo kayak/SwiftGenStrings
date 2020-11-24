@@ -26,14 +26,14 @@ struct SwiftGenStrings: ParsableCommand {
 		CommandConfiguration(commandName: "SwiftGenStrings", abstract: SwiftGenStrings.abstract, version: "0.0.2", helpNames: .shortAndLong)
 	}
 
-	@Option(name: .shortAndLong, help: "Substitute for NSLocalizedString, useful when different macro is used.")
+    @Argument(help: "List of files, that are used as source of Localizable.strings generation.")
+    var files: [URL]
+
+	@Option(name: .short, help: "(Optional) Substitute for NSLocalizedString, useful when different macro is used.")
 	var substitute: String?
 
-	@Option(name: .shortAndLong, help: "Specifies what directory Localizable.strings table is created in. Not specifying output directory will print script output content to standard output (console).")
+	@Option(name: .short, help: "(Optional) Specifies what directory Localizable.strings table is created in. Not specifying output directory will print script output content to standard output (console).")
 	var outputDirectory: URL?
-
-	@Argument()
-	var files: [URL]
 
 	func run() throws {
 		let collectionErrorOutput = LocalizedStringCollectionStandardErrorOutput()
