@@ -36,8 +36,7 @@ let package = Package(
             name: "SwiftGenStringsTests",
             dependencies: ["SwiftGenStringsCore"],
             resources: [
-                .process("testReportErrorOnSwiftUnicodeCodePoint.txt"),
-                .process("testUnescapesDoublyEscapedUnicodeCodePoints.txt")
+                .process("Resources")
             ]
         ),
     ]
