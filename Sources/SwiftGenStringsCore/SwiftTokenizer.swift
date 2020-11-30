@@ -43,7 +43,7 @@ public struct SwiftTokenizer {
                     if current == "\\" && iterator.startsWith("\\\n") {
                         iterator.advance(1)
                         iterator.skipWhitespacesAndNewlines()
-                    // Check for closing quotes
+                        // Check for closing quotes
                     } else if current == "\"" && iterator.startsWith("\"\"\"") {
                         iterator.advance(2)
                         // Remove last newline and trailing whitespace before closing quotes

@@ -4,7 +4,7 @@ public class StandardErrorOutput {
 
     public private(set) var hasWrittenError = false
 
-	public init() {}
+    public init() {}
     
     public func write(_ string: String) {
         let line = "\(string)\n"
@@ -15,5 +15,5 @@ public class StandardErrorOutput {
         hasWrittenError = true
         FileHandle.standardError.write(data)
     }
-
+    
 }

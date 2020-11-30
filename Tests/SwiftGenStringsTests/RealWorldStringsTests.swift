@@ -68,9 +68,9 @@ class RealWorldStringsTests: XCTestCase {
     }
 
     private func loadFileResource(named name: String) throws -> String {
-		guard let url = Bundle.module.url(forResource: name, withExtension: "txt") else {
-			throw NSError()
-		}
+        guard let url = Bundle.module.url(forResource: name, withExtension: "txt") else {
+            throw NSError()
+        }
         return try String(contentsOf: url, encoding: .utf8)
     }
 
