@@ -2,18 +2,23 @@ import Foundation
 
 public class StandardErrorOutput {
 
-    public private(set) var hasWrittenError = false
+    private var writtenErrors = [Error]()
+    private let formatter = ErrorFormatter()
+
+    public var numberOfWrittenErrors: Int {
+        writtenErrors.count
+    }
+
+    public var hasWrittenError: Bool {
+        !writtenErrors.isEmpty
+    }
 
     public init() {}
     
     public func write(_ string: String) {
-        let line = "\(string)\n"
-        guard let data = line.data(using: .utf8) else {
-            assertionFailure("Failed to convert \(line) to Data")
-            return
-        }
-        hasWrittenError = true
-        FileHandle.standardError.write(data)
+        let error = NSError(description: string)
+        formatter.writeFormattedError(error)
+        writtenErrors.append(error)
     }
-    
+
 }

@@ -63,7 +63,7 @@ class RealWorldStringsTests: XCTestCase {
     }
 
     private func findLocalizedStrings(in contents: String) -> [LocalizedString] {
-        let tokens = SwiftTokenizer.tokenizeSwiftString(contents)
+        let tokens = SwiftTokenizer().tokenizeSwiftString(contents)
         return LocalizedStringFinder(errorOutput: errorOutput).findLocalizedStrings(tokens)
     }
 

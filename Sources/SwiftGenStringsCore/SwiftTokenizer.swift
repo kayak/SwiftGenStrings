@@ -2,7 +2,9 @@ import Foundation
 
 public struct SwiftTokenizer {
 
-    public static func tokenizeSwiftString(_ string: String) -> [SwiftLanguageToken] {
+    public init() {}
+
+    public func tokenizeSwiftString(_ string: String) -> [SwiftLanguageToken] {
         let iterator = CharacterIterator(string: string)
         var tokens: [SwiftLanguageToken] = []
         while let character = iterator.next {
@@ -95,7 +97,7 @@ public struct SwiftTokenizer {
         return tokens
     }
 
-    private static let allowedIdentifierCharacterSet: CharacterSet = {
+    private let allowedIdentifierCharacterSet: CharacterSet = {
         let optionalCharacterSet = CharacterSet(charactersIn: "?!")
         let underscores = CharacterSet(charactersIn: "_")
 
@@ -105,7 +107,7 @@ public struct SwiftTokenizer {
             .union(underscores)
     }()
 
-    private static func isIdentifierCharacter(_ character: Character) -> Bool {
+    private func isIdentifierCharacter(_ character: Character) -> Bool {
         for unicodeScalar in character.unicodeScalars {
             if !allowedIdentifierCharacterSet.contains(unicodeScalar) {
                 return false

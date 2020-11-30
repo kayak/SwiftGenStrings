@@ -2,25 +2,12 @@ import ArgumentParser
 import Foundation
 import SwiftGenStringsCore
 
-extension URL: ExpressibleByArgument {
-
-    public init?(argument: String) {
-        if argument.hasPrefix("~/") {
-            let cleanedPath = String(argument.dropFirst())
-            self.init(fileURLWithPath: cleanedPath, relativeTo: FileManager.default.homeDirectoryForCurrentUser)
-        } else {
-            self.init(fileURLWithPath: argument)
-        }
-    }
-
-}
-
 struct SwiftGenStrings: ParsableCommand {
 
     private static var abstract = """
-	SwiftGenStrings is a command line application that can be used as a drop-in replacement for the standard genstrings command for Swift sources.
-	The latter only supports the short form of the NSLocalizedString function but breaks as soon as you use any parameters other than key and comment as in
-	"""
+    SwiftGenStrings is a command line application that can be used as a drop-in replacement for the standard genstrings command for Swift sources.
+    The latter only supports the short form of the NSLocalizedString function but breaks as soon as you use any parameters other than key and comment as in
+    """
 
     static var configuration: CommandConfiguration {
         CommandConfiguration(commandName: "SwiftGenStrings", abstract: SwiftGenStrings.abstract, version: "0.0.2", helpNames: .shortAndLong)
@@ -36,23 +23,35 @@ struct SwiftGenStrings: ParsableCommand {
     var outputDirectory: URL?
 
     func run() throws {
+        do {
+            try ky_run()
+        } catch let error {
+            ErrorFormatter().writeFormattedError(error)
+            Darwin.exit(1)
+        }
+    }
+
+    private func ky_run() throws {
         let collectionErrorOutput = LocalizedStringCollectionStandardErrorOutput()
         let finalStrings = LocalizedStringCollection(strings: [], errorOutput: collectionErrorOutput)
 
-        var errorEncountered = false
+        let tokenizer = SwiftTokenizer()
+
+        var numberOfWrittenErrors = 0
         for file in files {
             let contents = try String(contentsOf: file)
-            let tokens = SwiftTokenizer.tokenizeSwiftString(contents)
+            let tokens = tokenizer.tokenizeSwiftString(contents)
             let errorOutput = LocalizedStringFinderStandardErrorOutput(fileURL: file)
             let finder = LocalizedStringFinder(routine: substitute ?? "NSLocalizedString", errorOutput: errorOutput)
             let strings = finder.findLocalizedStrings(tokens)
             let collection = LocalizedStringCollection(strings: strings, errorOutput: collectionErrorOutput)
             finalStrings.merge(with: collection)
-            errorEncountered = errorEncountered || errorOutput.hasWrittenError || collectionErrorOutput.hasWrittenError
+            numberOfWrittenErrors += errorOutput.numberOfWrittenErrors + collectionErrorOutput.numberOfWrittenErrors
         }
 
-        if errorEncountered {
-            throw NSError(description: "Error encountered")
+        guard numberOfWrittenErrors == 0 else {
+            let errorMessage = numberOfWrittenErrors == 1 ? "1 error was written" : "\(numberOfWrittenErrors) errors were written"
+            throw NSError(description: errorMessage)
         }
 
         let output = finalStrings.formattedContent

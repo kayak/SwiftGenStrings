@@ -111,7 +111,7 @@ public class LocalizedStringFinder {
         result.append(LocalizedString(key: key, value: value, comments: [comment]))
         parsingLocalizedString = false
     }
-    
+
     /// Unicode points are defined as \\U123 in swift, but .strings file requires them unescaped in values.
     private func unescapeUnicodePoints(in string: String) -> String {
         return string.replacingOccurrences(of: "\\\\U", with: "\\U")
