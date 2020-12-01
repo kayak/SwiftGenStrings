@@ -2,23 +2,22 @@ import Foundation
 
 public class StandardErrorOutput {
 
-    private var writtenErrors = [Error]()
+    private var writtenErrorMessages = [String]()
     private let formatter = ErrorFormatter()
 
     public var numberOfWrittenErrors: Int {
-        writtenErrors.count
+        writtenErrorMessages.count
     }
 
     public var hasWrittenError: Bool {
-        !writtenErrors.isEmpty
+        !writtenErrorMessages.isEmpty
     }
 
     public init() {}
     
     public func write(_ string: String) {
-        let error = NSError(description: string)
-        formatter.writeFormattedError(error)
-        writtenErrors.append(error)
+        writtenErrorMessages.append(string)
+        formatter.writeFormattedError(string)
     }
 
 }

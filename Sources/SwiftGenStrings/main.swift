@@ -9,9 +9,12 @@ struct SwiftGenStrings: ParsableCommand {
     The latter only supports the short form of the NSLocalizedString function but breaks as soon as you use any parameters other than key and comment as in
     """
 
-    static var configuration: CommandConfiguration {
-        CommandConfiguration(commandName: "SwiftGenStrings", abstract: SwiftGenStrings.abstract, version: "0.0.2", helpNames: .shortAndLong)
-    }
+    static let configuration = CommandConfiguration(
+        commandName: "SwiftGenStrings",
+        abstract: SwiftGenStrings.abstract,
+        version: "0.0.2",
+        helpNames: .shortAndLong
+    )
 
     @Argument(help: "List of files, that are used as source of Localizable.strings generation.")
     var files: [URL]
@@ -25,9 +28,9 @@ struct SwiftGenStrings: ParsableCommand {
     func run() throws {
         do {
             try ky_run()
-        } catch let error {
-            ErrorFormatter().writeFormattedError(error)
-            Darwin.exit(1)
+        } catch let error as NSError {
+            ErrorFormatter().writeFormattedError(error.localizedDescription)
+            Darwin.exit(Int32(error.code))
         }
     }
 
@@ -57,7 +60,8 @@ struct SwiftGenStrings: ParsableCommand {
         let output = finalStrings.formattedContent
 
         if let outputDirectory = outputDirectory {
-            try output.ky_write(to: outputDirectory, atomically: false, encoding: .utf8, createDirectoryIfNonExisting: true)
+            let outputFileURL = outputDirectory.appendingPathComponent("Localizable.strings")
+            try output.ky_write(to: outputFileURL, atomically: false, encoding: .utf8)
         } else {
             print(output, terminator: "") // No newline at the end
         }
