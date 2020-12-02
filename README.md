@@ -11,20 +11,17 @@ The upstream issue is tracked [here](https://openradar.appspot.com/22133811).
 ## Usage
 
 ```
-SwiftGenStrings files
-SwiftGenStrings [-s <routine>] [-o <outputDir>] files
-SwiftGenStrings [-h|--help]
+SwiftGenStrings [<files> ...] [-s <substitute>] [-o <output-directory>]
 
-OPTIONS
--h|--help
-    (Optional) Print help.
--s routine
-    (Optional) Substitute routine for NSLocalizedString, useful when different macro is used.
--o outputDir
-    (Optional) Specifies what directory Localizable.strings table is created in.
-    Not specifying output directory will print script output content to standard output (console).
-files
-    List of files, that are used as source of Localizable.strings generation.
+ARGUMENTS:
+  <files>                 List of files, that are used as source of Localizable.strings generation.
+
+OPTIONS:
+  -s <substitute>         (Optional) Substitute for NSLocalizedString, useful when different macro is used.
+  -o <output-directory>   (Optional) Specifies what directory Localizable.strings table is created in. Not specifying output directory will print script output content
+                          to standard output (console).
+  --version               Show the version.
+  -h, --help              Show help information.
 ```
 
 To gather strings in current directory, run:
@@ -39,6 +36,13 @@ $ find . \( -name "*.swift" ! -path "./Carthage/*" ! -path "./Pods/*" \) | xargs
 
 ## Installation
 
+### [Mint](https://github.com/yonaskolb/mint)
+
+The quickest and easiest way to install SwiftGenStrings is via Mint
+```
+$ mint install kayak/SwiftGenStrings
+```
+
 ### Prebuilt Binaries
 
 We tag releases and upload prebuilt binaries to GitHub. Checkout the [releases](https://github.com/kayak/SwiftGenStrings/releases) tab or go straight to the [latest](https://github.com/kayak/SwiftGenStrings/releases/latest) release.
@@ -51,29 +55,19 @@ The project provides a `Makefile`. To export a binary run:
 $ make release
 ```
 
-The exported binary can be found under `Products/SwiftGenStrings`
-
-### CocoaPods
-
-A podspec file for the project was released (see [here](https://cocoapods.org/pods/SwiftGenStrings)). To consume the project, simply add the following to your `Podfile`:
-
-```
-pod 'SwiftGenStrings'
-```
-
-After running `pod install` or `pod update`, you will then find the binary under `Pods/SwiftGenStrings/SwiftGenStrings`
+The exported binary can be found under `Products/SwiftGenStrings`. Alternatively you can use `make install` to install the compiled library directly into `/usr/local/bin/SwiftGenStrings`
 
 ## Testing
 
-Xcode 9.2 seems to have a bug with running tests against macOS destination, luckily, `xcodebuild` works just fine:
+Since SwiftGenStrings is a SPM package, running tests is easy:
 ```
-$ make test
+$ swift test
 ```
 
 ## Requirements
 
-- Xcode 9.2
-- Swift 4.0.2
+- Xcode 12
+- Swift 5.3
 
 ## Limitations
 
