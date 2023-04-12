@@ -2,7 +2,10 @@ import ArgumentParser
 import Foundation
 import SwiftGenStringsCore
 
+@main
 struct SwiftGenStrings: ParsableCommand {
+
+    // MARK: - Configuration
 
     private static var abstract = """
     SwiftGenStrings is a command line application that can be used as a drop-in replacement for the standard genstrings command for Swift sources.
@@ -12,9 +15,11 @@ struct SwiftGenStrings: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "SwiftGenStrings",
         abstract: SwiftGenStrings.abstract,
-        version: "0.0.2",
+        version: "0.1.0",
         helpNames: .shortAndLong
     )
+
+    // MARK: - Arguments and Options
 
     @Argument(help: "List of files, that are used as source of Localizable.strings generation.")
     var files: [URL]
@@ -24,6 +29,8 @@ struct SwiftGenStrings: ParsableCommand {
 
     @Option(name: .short, help: "(Optional) Specifies what directory Localizable.strings table is created in. Not specifying output directory will print script output content to standard output (console).")
     var outputDirectory: URL?
+
+    // MARK: - Processing
 
     func run() throws {
         do {
@@ -68,5 +75,3 @@ struct SwiftGenStrings: ParsableCommand {
     }
 
 }
-
-SwiftGenStrings.main()
