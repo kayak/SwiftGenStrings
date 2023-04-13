@@ -2,21 +2,18 @@ name: Swift
 
 on:
   push:
-    branches: [ master ]
+    branches: [main]
   pull_request:
-    branches: [ master ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: macos-latest
 
     steps:
-    - uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: latest-stable
-    - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Build package
+        run: swift build -v
+      - name: Run tests
+        run: swift test -v
