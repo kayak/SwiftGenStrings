@@ -4,7 +4,7 @@ public protocol LocalizedStringCollectionErrorOutput {
     func differentValues(forKey key: String, value1: String, value2: String)
 }
 
-public class LocalizedStringCollection {
+public final class LocalizedStringCollection {
 
     private let errorOutput: LocalizedStringCollectionErrorOutput?
 
@@ -17,6 +17,14 @@ public class LocalizedStringCollection {
     public init(strings: [LocalizedString], errorOutput: LocalizedStringCollectionErrorOutput?) {
         self.errorOutput = errorOutput
         merge(with: strings)
+    }
+
+    public func formattedContent(includeComments: Bool) -> String {
+        strings
+            .sorted(by: {$0.key < $1.key })
+            .reduce("") { result, string in
+                result + string.formatted(includeComments: includeComments) + "\n\n"
+            }
     }
 
     public func merge(with collection: LocalizedStringCollection) {
@@ -37,14 +45,6 @@ public class LocalizedStringCollection {
                 byKey[string.key] = string
             }
         }
-    }
-
-    public var formattedContent: String {
-        strings
-            .sorted(by: {$0.key < $1.key })
-            .reduce("") { result, string in
-                result + string.formatted + "\n\n"
-            }
     }
 
 }

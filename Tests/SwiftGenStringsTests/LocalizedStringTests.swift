@@ -1,7 +1,7 @@
 @testable import SwiftGenStringsCore
 import XCTest
 
-class LocalizedStringTests: XCTestCase {
+final class LocalizedStringTests: XCTestCase {
 
     func testLocalizedStringWithPercent() {
         let string = LocalizedString(key: "", value: "100% Swift", comments: [])

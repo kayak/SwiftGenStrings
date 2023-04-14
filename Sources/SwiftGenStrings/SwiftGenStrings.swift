@@ -30,6 +30,9 @@ struct SwiftGenStrings: ParsableCommand {
     @Option(name: .short, help: "(Optional) Specifies what directory Localizable.strings table is created in. Not specifying output directory will print script output content to standard output (console).")
     var outputDirectory: URL?
 
+    @Flag(name: .shortAndLong, help: "(Optional) Formatted output does not include comments")
+    var excludeComments: Bool = false
+
     // MARK: - Processing
 
     func run() throws {
@@ -64,7 +67,7 @@ struct SwiftGenStrings: ParsableCommand {
             throw NSError(description: errorMessage)
         }
 
-        let output = finalStrings.formattedContent
+        let output = finalStrings.formattedContent(includeComments: !excludeComments)
 
         if let outputDirectory = outputDirectory {
             let outputFileURL = outputDirectory.appendingPathComponent("Localizable.strings")

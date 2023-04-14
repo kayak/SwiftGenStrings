@@ -1,9 +1,9 @@
 @testable import SwiftGenStringsCore
 import XCTest
 
-class SwiftTokenizerTests: XCTestCase {
+final class SwiftTokenizerTests: XCTestCase {
 
-    let tokenizer = SwiftTokenizer()
+    private let tokenizer = SwiftTokenizer()
 
     func testTokenizer() {
         let string = "func something { return NSLocalizedString(\"KEY\", value: \"Quotes in \\\" the middle\", comment: \"COMMENT\") }"

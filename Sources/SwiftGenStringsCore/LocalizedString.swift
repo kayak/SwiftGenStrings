@@ -18,17 +18,11 @@ private let formatSpecifierRegex: NSRegularExpression = {
     return try! NSRegularExpression(pattern: pattern, options:[])
 }()
 
-public class LocalizedString: CustomStringConvertible, Equatable {
+public struct LocalizedString: CustomStringConvertible, Equatable {
 
     let key: String
     let value: String
     let comments: [String]
-
-    init(key: String, value: String, comments: [String]) {
-        self.key = key
-        self.value = value
-        self.comments = comments
-    }
 
     var valueWithIndexedPlaceholders: String {
         let matches = formatSpecifierRegex.matches(in: value, options:[], range: NSRange(location: 0, length: (value as NSString).length))
@@ -45,9 +39,13 @@ public class LocalizedString: CustomStringConvertible, Equatable {
         return result as String
     }
 
-    var formatted: String {
-        "/* \(formattedComments) */\n" +
-            "\"\(key)\" = \"\(valueWithIndexedPlaceholders)\";"
+    func formatted(includeComments: Bool) -> String {
+        var result = ""
+        if includeComments {
+            result = "/* \(formattedComments) */\n"
+        }
+        result += "\"\(key)\" = \"\(valueWithIndexedPlaceholders)\";"
+        return result
     }
 
     private var formattedComments: String {
@@ -58,12 +56,6 @@ public class LocalizedString: CustomStringConvertible, Equatable {
 
     public var description: String {
         "LocalizedString(key: \(key), value: \(value), comments: \(comments))"
-    }
-
-    // MARK: - Equatable
-
-    public static func ==(lhs: LocalizedString, rhs: LocalizedString) -> Bool {
-        lhs.key == rhs.key && lhs.value == rhs.value && lhs.comments == rhs.comments
     }
 
 }
