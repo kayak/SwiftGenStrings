@@ -1,7 +1,7 @@
 @testable import SwiftGenStringsCore
 import XCTest
 
-class LocalizedStringFinderTests: XCTestCase {
+final class LocalizedStringFinderTests: XCTestCase {
 
     func testFindStringsWithTableNameAndBundle() {
         let finder = LocalizedStringFinder()

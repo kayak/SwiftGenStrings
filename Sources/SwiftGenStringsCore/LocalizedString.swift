@@ -18,7 +18,7 @@ private let formatSpecifierRegex: NSRegularExpression = {
     return try! NSRegularExpression(pattern: pattern, options:[])
 }()
 
-public class LocalizedString: CustomStringConvertible, Equatable {
+public final class LocalizedString: CustomStringConvertible, Equatable {
 
     let key: String
     let value: String
@@ -45,9 +45,13 @@ public class LocalizedString: CustomStringConvertible, Equatable {
         return result as String
     }
 
-    var formatted: String {
-        "/* \(formattedComments) */\n" +
-            "\"\(key)\" = \"\(valueWithIndexedPlaceholders)\";"
+    func formatted(includeComments: Bool) -> String {
+        var result = ""
+        if includeComments {
+            result = "/* \(formattedComments) */\n"
+        }
+        result += "\"\(key)\" = \"\(valueWithIndexedPlaceholders)\";"
+        return result
     }
 
     private var formattedComments: String {

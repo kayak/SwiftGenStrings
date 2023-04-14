@@ -1,7 +1,7 @@
 @testable import SwiftGenStringsCore
 import XCTest
 
-class CharacterIteratorTests: XCTestCase {
+final class CharacterIteratorTests: XCTestCase {
 
     // MARK: - Iteration tests
     

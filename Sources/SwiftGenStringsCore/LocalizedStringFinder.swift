@@ -7,7 +7,7 @@ public protocol LocalizedStringFinderErrorOutput {
 
 private let verifyUnicodeRegex = try! NSRegularExpression(pattern: "\\\\[uU]\\{[a-fA-F0-9]+\\}", options: [])
 
-public class LocalizedStringFinder {
+public final class LocalizedStringFinder {
 
     private let routine: String
     private let errorOutput: LocalizedStringFinderErrorOutput?

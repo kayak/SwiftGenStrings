@@ -1,6 +1,6 @@
 import Foundation
 
-public class CharacterIterator {
+public final class CharacterIterator {
 
     private let characters: [Character]
 

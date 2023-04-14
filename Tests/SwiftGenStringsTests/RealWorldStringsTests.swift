@@ -1,7 +1,7 @@
 @testable import SwiftGenStringsCore
 import XCTest
 
-class RealWorldStringsTests: XCTestCase {
+final class RealWorldStringsTests: XCTestCase {
 
     private let errorOutput = StubErrorOutput()
 
@@ -76,7 +76,7 @@ class RealWorldStringsTests: XCTestCase {
 
 }
 
-private class StubErrorOutput: LocalizedStringFinderErrorOutput {
+private final class StubErrorOutput: LocalizedStringFinderErrorOutput {
     var invalidIdentifiers: [String] = []
     var invalidUnicodeCodePoints: [String] = []
 

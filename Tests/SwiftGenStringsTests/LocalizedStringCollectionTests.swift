@@ -1,9 +1,21 @@
 @testable import SwiftGenStringsCore
 import XCTest
 
-class LocalizedStringCollectionTests: XCTestCase {
+final class LocalizedStringCollectionTests: XCTestCase {
 
-    fileprivate var differentValuesReported: [String] = []
+    private var differentValuesReported: [String] = []
+
+    func testFormattedContentIncludingComments() {
+        let collection = LocalizedStringCollection(strings: [LocalizedString(key: "KEY", value: "VALUE", comments: ["Comment"])], errorOutput: self)
+        let output = collection.formattedContent(includeComments: true)
+        XCTAssertEqual(output, "/* Comment */\n\"KEY\" = \"VALUE\";\n\n")
+    }
+
+    func testFormattedContentExcludingComments() {
+        let collection = LocalizedStringCollection(strings: [LocalizedString(key: "KEY", value: "VALUE", comments: ["Comment will be ignored"])], errorOutput: self)
+        let output = collection.formattedContent(includeComments: false)
+        XCTAssertEqual(output, "\"KEY\" = \"VALUE\";\n\n")
+    }
 
     func testMergeWithEmptyStrings() {
         let collection = LocalizedStringCollection(strings: [], errorOutput: self)
