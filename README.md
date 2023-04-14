@@ -11,15 +11,17 @@ The upstream issue is tracked [here](https://openradar.appspot.com/22133811).
 ## Usage
 
 ```
-SwiftGenStrings [<files> ...] [-s <substitute>] [-o <output-directory>]
+USAGE: SwiftGenStrings <files> ... [-s <s>] [-o <o>] [--exclude-comments]
 
 ARGUMENTS:
-  <files>                 List of files, that are used as source of Localizable.strings generation.
+  <files>                 List of files, that are used as source of
+                          Localizable.strings generation.
 
 OPTIONS:
-  -s <substitute>         (Optional) Substitute for NSLocalizedString, useful when different macro is used.
-  -o <output-directory>   (Optional) Specifies what directory Localizable.strings table is created in. Not specifying output directory will print script output content
-                          to standard output (console).
+  -s <s>                  (Optional) Substitute for NSLocalizedString, useful when different macro is used.
+  -o <o>                  (Optional) Specifies what directory Localizable.strings table is created in. Not specifying output directory will print script output
+                          content to standard output (console).
+  -e, --exclude-comments  (Optional) Formatted output does not include comments
   --version               Show the version.
   -h, --help              Show help information.
 ```
