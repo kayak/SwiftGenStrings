@@ -1,5 +1,7 @@
 # SwiftGenStrings
 
+⚠️ This repository is no longer needed as genstrings now supports Swift localized strings with key, value, comment arguments. Use xcrun `extractLocStrings` instead.
+
 SwiftGenStrings is a command line application that can be used as a drop-in replacement for the standard `genstrings` command for Swift sources. The latter only supports the short form of the `NSLocalizedString` function but breaks as soon as you use any parameters other than `key` and `comment` as in
 
 ```
